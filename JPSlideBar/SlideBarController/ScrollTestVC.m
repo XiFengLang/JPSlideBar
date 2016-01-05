@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    titles = @[@"游客",@"待",@"VIP",@"腾讯百度",@"黑名单",@"特斯拉",@"阿里巴巴"];
-    titles = @[@"游客",@"待",@"VIP",@"阿里巴巴"];
+    titles = @[@"游客",@"腾讯百度",@"阿里巴巴"];
     
     [self initializeUI];
     
@@ -30,12 +30,12 @@
     self.slideBar = [JPSlideBar showInViewController:self
                                         frameOriginY:64
                                            itemSpace:30
-                                 slideBarSliderStyle:JPSlideBarStyleShowSliderAndChangeColor];
+                                 slideBarSliderStyle:JPSlideBarStyleGradientColorOnly];
     
     
     [self.slideBar configureSlideBarWithTitles:titles
                                      titleFont:[UIFont systemFontOfSize:18]
-                              normalTitleRGBColor:JCBLACK_COLOR
+                              normalTitleRGBColor:JCWHITE_COLOR
                             selectedTitleRGBColor:JCYELLOW_COLOR
                                  selectedBlock:^(NSInteger index) {
                                      CGFloat scrollX = CGRectGetWidth(self.scrollView.bounds) * index;
