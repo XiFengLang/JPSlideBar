@@ -7,8 +7,12 @@
 //
 
 #import "ViewController.h"
+#import "ScrollTestVC.h"
+#import "JPTableViewCell.h"
+#import "CollectViewTestVC.h"
 
-@interface ViewController ()
+@interface ViewController () 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -16,22 +20,55 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self.masterDataArray addObject:@"ScrollView上添加多个子控制的View"];
+    [self.masterDataArray addObject:@"CollectionView添加多个子控制的View"];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.masterDataArray.count;
 }
-*/
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    JPTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"JPTableViewCell"];
+    cell.lable.text = self.masterDataArray[indexPath.row];
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 50;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if (indexPath.row ==0 ) {
+        [self pushToScrollTestVC];
+    }else if (indexPath.row == 1){
+        [self pushToCollectionViewTestVC];
+    }
+}
+
+- (void)pushToScrollTestVC{
+    ScrollTestVC * vc = [[ScrollTestVC alloc]init];
+    vc.view.backgroundColor = [UIColor whiteColor];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)pushToCollectionViewTestVC{
+    CollectViewTestVC * vc = [[CollectViewTestVC alloc]initWithNibName:@"CollectViewTestVC" bundle:nil];
+    vc.view.backgroundColor = [UIColor whiteColor];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
+- (NSMutableArray *)masterDataArray{
+    if (!_masterDataArray) {
+        _masterDataArray = [[NSMutableArray alloc]init];
+    }return _masterDataArray;
+}
 
 @end

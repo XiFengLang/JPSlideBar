@@ -7,14 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		183E56F81C3B965E00DE4314 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183E56F71C3B965E00DE4314 /* ViewController.m */; };
+		183E56FF1C3B9AB200DE4314 /* CollectViewTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 183E56FD1C3B9AB200DE4314 /* CollectViewTestVC.m */; };
+		183E57001C3B9AB200DE4314 /* CollectViewTestVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183E56FE1C3B9AB200DE4314 /* CollectViewTestVC.xib */; };
 		185A2A151C337F140074075C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A2A141C337F140074075C /* main.m */; };
 		185A2A181C337F140074075C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A2A171C337F140074075C /* AppDelegate.m */; };
-		185A2A1B1C337F140074075C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A2A1A1C337F140074075C /* ViewController.m */; };
 		185A2A1E1C337F140074075C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185A2A1C1C337F140074075C /* Main.storyboard */; };
 		185A2A201C337F140074075C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 185A2A1F1C337F140074075C /* Assets.xcassets */; };
 		185A2A231C337F140074075C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185A2A211C337F140074075C /* LaunchScreen.storyboard */; };
 		185A2A2E1C337F140074075C /* JPSlideBarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A2A2D1C337F140074075C /* JPSlideBarTests.m */; };
 		185A2A391C337F140074075C /* JPSlideBarUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A2A381C337F140074075C /* JPSlideBarUITests.m */; };
+		185A2A4A1C337F860074075C /* ScrollTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A2A491C337F860074075C /* ScrollTestVC.m */; };
+		18CEC7B81C3BACF400C4B555 /* JPSlideBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CEC7B51C3BACF400C4B555 /* JPSlideBar.m */; };
+		18CEC7B91C3BACF400C4B555 /* UIColor+JPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CEC7B71C3BACF400C4B555 /* UIColor+JPExtension.m */; };
+		18CEC7BD1C3BBF7800C4B555 /* JPBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CEC7BB1C3BBF7800C4B555 /* JPBaseTableViewController.m */; };
+		18CEC7BE1C3BBF7800C4B555 /* JPBaseTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CEC7BC1C3BBF7800C4B555 /* JPBaseTableViewController.xib */; };
+		18CEC7C11C3BBF9E00C4B555 /* JPTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CEC7C01C3BBF9E00C4B555 /* JPTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,12 +43,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		183E56F61C3B965E00DE4314 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		183E56F71C3B965E00DE4314 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		183E56FC1C3B9AB200DE4314 /* CollectViewTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectViewTestVC.h; sourceTree = "<group>"; };
+		183E56FD1C3B9AB200DE4314 /* CollectViewTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectViewTestVC.m; sourceTree = "<group>"; };
+		183E56FE1C3B9AB200DE4314 /* CollectViewTestVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectViewTestVC.xib; sourceTree = "<group>"; };
 		185A2A101C337F140074075C /* JPSlideBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JPSlideBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		185A2A141C337F140074075C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		185A2A161C337F140074075C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		185A2A171C337F140074075C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		185A2A191C337F140074075C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		185A2A1A1C337F140074075C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		185A2A1D1C337F140074075C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		185A2A1F1C337F140074075C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		185A2A221C337F140074075C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +62,17 @@
 		185A2A341C337F140074075C /* JPSlideBarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JPSlideBarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		185A2A381C337F140074075C /* JPSlideBarUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPSlideBarUITests.m; sourceTree = "<group>"; };
 		185A2A3A1C337F140074075C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		185A2A481C337F860074075C /* ScrollTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollTestVC.h; sourceTree = "<group>"; };
+		185A2A491C337F860074075C /* ScrollTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollTestVC.m; sourceTree = "<group>"; };
+		18CEC7B41C3BACF400C4B555 /* JPSlideBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPSlideBar.h; sourceTree = "<group>"; };
+		18CEC7B51C3BACF400C4B555 /* JPSlideBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPSlideBar.m; sourceTree = "<group>"; };
+		18CEC7B61C3BACF400C4B555 /* UIColor+JPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+JPExtension.h"; sourceTree = "<group>"; };
+		18CEC7B71C3BACF400C4B555 /* UIColor+JPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+JPExtension.m"; sourceTree = "<group>"; };
+		18CEC7BA1C3BBF7800C4B555 /* JPBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPBaseTableViewController.h; sourceTree = "<group>"; };
+		18CEC7BB1C3BBF7800C4B555 /* JPBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPBaseTableViewController.m; sourceTree = "<group>"; };
+		18CEC7BC1C3BBF7800C4B555 /* JPBaseTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JPBaseTableViewController.xib; sourceTree = "<group>"; };
+		18CEC7BF1C3BBF9E00C4B555 /* JPTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPTableViewCell.h; sourceTree = "<group>"; };
+		18CEC7C01C3BBF9E00C4B555 /* JPTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +123,12 @@
 		185A2A121C337F140074075C /* JPSlideBar */ = {
 			isa = PBXGroup;
 			children = (
+				18CEC7B31C3BACF400C4B555 /* JPSlideBar */,
+				185A2A461C337F4E0074075C /* SlideBarController */,
 				185A2A161C337F140074075C /* AppDelegate.h */,
 				185A2A171C337F140074075C /* AppDelegate.m */,
-				185A2A191C337F140074075C /* ViewController.h */,
-				185A2A1A1C337F140074075C /* ViewController.m */,
+				183E56F61C3B965E00DE4314 /* ViewController.h */,
+				183E56F71C3B965E00DE4314 /* ViewController.m */,
 				185A2A1C1C337F140074075C /* Main.storyboard */,
 				185A2A1F1C337F140074075C /* Assets.xcassets */,
 				185A2A211C337F140074075C /* LaunchScreen.storyboard */,
@@ -138,6 +162,34 @@
 				185A2A3A1C337F140074075C /* Info.plist */,
 			);
 			path = JPSlideBarUITests;
+			sourceTree = "<group>";
+		};
+		185A2A461C337F4E0074075C /* SlideBarController */ = {
+			isa = PBXGroup;
+			children = (
+				18CEC7BA1C3BBF7800C4B555 /* JPBaseTableViewController.h */,
+				18CEC7BB1C3BBF7800C4B555 /* JPBaseTableViewController.m */,
+				18CEC7BC1C3BBF7800C4B555 /* JPBaseTableViewController.xib */,
+				18CEC7BF1C3BBF9E00C4B555 /* JPTableViewCell.h */,
+				18CEC7C01C3BBF9E00C4B555 /* JPTableViewCell.m */,
+				185A2A481C337F860074075C /* ScrollTestVC.h */,
+				185A2A491C337F860074075C /* ScrollTestVC.m */,
+				183E56FC1C3B9AB200DE4314 /* CollectViewTestVC.h */,
+				183E56FD1C3B9AB200DE4314 /* CollectViewTestVC.m */,
+				183E56FE1C3B9AB200DE4314 /* CollectViewTestVC.xib */,
+			);
+			path = SlideBarController;
+			sourceTree = "<group>";
+		};
+		18CEC7B31C3BACF400C4B555 /* JPSlideBar */ = {
+			isa = PBXGroup;
+			children = (
+				18CEC7B41C3BACF400C4B555 /* JPSlideBar.h */,
+				18CEC7B51C3BACF400C4B555 /* JPSlideBar.m */,
+				18CEC7B61C3BACF400C4B555 /* UIColor+JPExtension.h */,
+				18CEC7B71C3BACF400C4B555 /* UIColor+JPExtension.m */,
+			);
+			path = JPSlideBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,7 +295,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				183E57001C3B9AB200DE4314 /* CollectViewTestVC.xib in Resources */,
 				185A2A231C337F140074075C /* LaunchScreen.storyboard in Resources */,
+				18CEC7BE1C3BBF7800C4B555 /* JPBaseTableViewController.xib in Resources */,
 				185A2A201C337F140074075C /* Assets.xcassets in Resources */,
 				185A2A1E1C337F140074075C /* Main.storyboard in Resources */,
 			);
@@ -270,9 +324,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				185A2A1B1C337F140074075C /* ViewController.m in Sources */,
+				183E56F81C3B965E00DE4314 /* ViewController.m in Sources */,
+				185A2A4A1C337F860074075C /* ScrollTestVC.m in Sources */,
+				18CEC7B91C3BACF400C4B555 /* UIColor+JPExtension.m in Sources */,
 				185A2A181C337F140074075C /* AppDelegate.m in Sources */,
+				18CEC7BD1C3BBF7800C4B555 /* JPBaseTableViewController.m in Sources */,
 				185A2A151C337F140074075C /* main.m in Sources */,
+				18CEC7C11C3BBF9E00C4B555 /* JPTableViewCell.m in Sources */,
+				183E56FF1C3B9AB200DE4314 /* CollectViewTestVC.m in Sources */,
+				18CEC7B81C3BACF400C4B555 /* JPSlideBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +556,7 @@
 				185A2A3F1C337F140074075C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		185A2A401C337F140074075C /* Build configuration list for PBXNativeTarget "JPSlideBarTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +565,7 @@
 				185A2A421C337F140074075C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		185A2A431C337F140074075C /* Build configuration list for PBXNativeTarget "JPSlideBarUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +574,7 @@
 				185A2A451C337F140074075C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

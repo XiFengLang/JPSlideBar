@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface CollectViewTestVC : UIViewController
+@interface CollectViewTestVC : UIViewController <UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @end
