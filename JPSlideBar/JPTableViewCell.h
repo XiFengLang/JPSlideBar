@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  JPTableViewCell.h
 //  JPSlideBar
 //
 //  Created by apple on 16/1/5.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface JPTableViewCell : UITableViewCell
 
 @end

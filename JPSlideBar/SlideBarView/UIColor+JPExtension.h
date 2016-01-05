@@ -1,13 +1,13 @@
 //
-//  ViewController.h
+//  UIColor+JPExtension.h
 //  JPSlideBar
 //
-//  Created by apple on 16/1/5.
+//  Created by apple on 16/1/4.
 //  Copyright © 2016年 XiFengLang. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface UIColor (JPExtension)
 
 @end

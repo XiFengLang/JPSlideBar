@@ -1,22 +1,22 @@
 //
-//  ViewController.m
+//  CollectViewTestVC.m
 //  JPSlideBar
 //
 //  Created by apple on 16/1/5.
 //  Copyright © 2016年 XiFengLang. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "CollectViewTestVC.h"
 
-@interface ViewController ()
+@interface CollectViewTestVC ()
 
 @end
 
-@implementation ViewController
+@implementation CollectViewTestVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {
