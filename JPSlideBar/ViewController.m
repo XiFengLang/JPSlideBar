@@ -25,6 +25,23 @@
     [self.masterDataArray addObject:@"CollectionView添加多个子控制的View"];
 }
 
+
+- (void)pushToScrollTestVC{
+    ScrollTestVC * vc = [[ScrollTestVC alloc]init];
+    vc.view.backgroundColor = [UIColor whiteColor];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)pushToCollectionViewTestVC{
+    CollectViewTestVC * vc = [[CollectViewTestVC alloc]initWithNibName:@"CollectViewTestVC" bundle:nil];
+    vc.view.backgroundColor = [UIColor whiteColor];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
+
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -52,18 +69,7 @@
     }
 }
 
-- (void)pushToScrollTestVC{
-    ScrollTestVC * vc = [[ScrollTestVC alloc]init];
-    vc.view.backgroundColor = [UIColor whiteColor];
-    [self.navigationController pushViewController:vc animated:YES];
-}
 
-- (void)pushToCollectionViewTestVC{
-    CollectViewTestVC * vc = [[CollectViewTestVC alloc]initWithNibName:@"CollectViewTestVC" bundle:nil];
-    vc.view.backgroundColor = [UIColor whiteColor];
-    [self.navigationController pushViewController:vc animated:YES];
-    
-}
 
 - (NSMutableArray *)masterDataArray{
     if (!_masterDataArray) {

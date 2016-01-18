@@ -21,62 +21,52 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    titles = @[@"游客",@"待",@"VIP",@"腾讯百度",@"黑名单",@"特斯拉",@"阿里巴巴"];
-    titles = @[@"游客",@"腾讯百度",@"阿里巴巴"];
+//    titles = @[@"简书",@"ONE",@"网易云音乐",@"腾讯百度",@"谷歌",@"特斯拉",@"阿里巴巴"];
+    titles = @[@"简书",@"腾讯",@"阿里",@"网易云"];
     
     [self initializeUI];
+    self.scrollView.decelerationRate = 1.0;
     
-#pragma mark -【1、初始化并显示底层毛玻璃/有数据再配置slideBar】
+
     self.slideBar = [JPSlideBar showInViewController:self
+                                observableScrollView:self.scrollView
                                         frameOriginY:64
                                            itemSpace:30
                                  slideBarSliderStyle:JPSlideBarStyleGradientColorOnly];
     
-    
+    Weak(self); //避免循环引用
     [self.slideBar configureSlideBarWithTitles:titles
                                      titleFont:[UIFont systemFontOfSize:18]
-                              normalTitleRGBColor:JCWHITE_COLOR
-                            selectedTitleRGBColor:JCYELLOW_COLOR
+                           normalTitleRGBColor:JColor_RGB(0,0,0)
+                         selectedTitleRGBColor:JColor_RGB(255,255,255)
                                  selectedBlock:^(NSInteger index) {
+                                     Strong(self);
                                      CGFloat scrollX = CGRectGetWidth(self.scrollView.bounds) * index;
                                      [self.scrollView setContentOffset:CGPointMake(scrollX, 0)];
                                  }];
     
-    // 设置背景颜色，默认毛玻璃效果
-    //[self.slideBar setSlideBarBackgroudColorIfNecessary:[UIColor lightGrayColor]];
+    // 可以监听每次翻页的通知,内部已经计算好。(比如刷新数据)
+    [JPNotificationCenter addObserver:self selector:@selector(doSomeThingWhenScrollViewChangePage:) name:JPScrollViewDidChangePageNotification object:nil];
+}
+
+- (void)doSomeThingWhenScrollViewChangePage:(NSNotification *)notification{
+    CGFloat offsetX = [notification.userInfo[JPScrollViewContentOffsetX] floatValue];
+    NSInteger index = [notification.userInfo[JPSlideBarCurrentIndex] integerValue];
     
-#pragma mark -【2、方法1、增加KVO观察者】,不太推荐这种方法，模拟器上测试KVO不够流畅
-    //[self.scrollView addObserver:self.slideBar forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
+    JKLog(@"offsetX:%f    index:%ld",offsetX,index);
 }
 
 
 
-#pragma mark -【2、推荐方法2、实现scrollViewDidScroll方法，实现更新】
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [self.slideBar updateSlideBarWhenScrollViewDidScrollWithOffsetX:scrollView.contentOffset.x];
-}
-
-#pragma mark -【3、完成减速发个通知】
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    [[NSNotificationCenter defaultCenter]postNotificationName:JPScrollViewDidEndDeceleratingNotification object:nil userInfo:@{JPScrollViewContentOffsetX:@(scrollView.contentOffset.x)}];
-}
 
 
-#pragma mark -【4、三步走,避免内存泄露】
+
+
+
+
 - (void)back{
-    // 1、[未使用KVO，则省略] 移除KVO观察者，slideBar 通过 KVO 监测scrollView.contentOffset
-    // 2、self.view 强引用slideBar
-    // 3、self强引用slideBar，如果不是成员属性，此步可省略
-    
-    //[self.scrollView removeObserver:self.slideBar forKeyPath:@"contentOffset"];
-    [self.slideBar   removeFromSuperview];
-    self.slideBar    = nil;
-    
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-
-
 
 - (void)initializeUI{
     self.view.backgroundColor = [UIColor whiteColor];
@@ -96,7 +86,6 @@
     self.scrollView.showsHorizontalScrollIndicator= NO;
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.pagingEnabled = YES;
-//    self.scrollView.bounces = NO;
     self.scrollView.delegate = self;
     [self.view addSubview:self.scrollView];
 }
@@ -114,13 +103,7 @@
 }
 
 
-
-
-
-
 - (void)dealloc{
-    [self.scrollView removeFromSuperview];
-    self.scrollView = nil;
     NSLog(@"%@被释放",[self class]);
 }
 

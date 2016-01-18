@@ -23,8 +23,12 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Xab-XZ-c5o" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="CJ9-Cl-igq"/>
+                <constraint firstItem="Xab-XZ-c5o" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HT2-dN-P1g"/>
+                <constraint firstAttribute="trailing" secondItem="Xab-XZ-c5o" secondAttribute="trailing" id="MM0-uB-pjT"/>
+                <constraint firstAttribute="bottom" secondItem="Xab-XZ-c5o" secondAttribute="bottom" id="bHX-4l-goq"/>
                 <constraint firstAttribute="bottom" secondItem="Xab-XZ-c5o" secondAttribute="bottom" id="bh9-c5-dX8"/>
                 <constraint firstItem="Xab-XZ-c5o" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="y3V-9c-H22"/>
+                <constraint firstItem="Xab-XZ-c5o" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="yAC-79-ZOV"/>
                 <constraint firstAttribute="trailing" secondItem="Xab-XZ-c5o" secondAttribute="trailing" id="zLC-m1-fad"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

@@ -12,11 +12,12 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="61D-2O-sQ2">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="LGJ-va-tGI">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -27,13 +28,16 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="61D-2O-sQ2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1lz-gQ-ejf"/>
+                <constraint firstAttribute="trailing" secondItem="61D-2O-sQ2" secondAttribute="trailing" id="9OX-JH-x32"/>
                 <constraint firstAttribute="trailing" secondItem="61D-2O-sQ2" secondAttribute="trailing" id="NJU-Si-NHZ"/>
+                <constraint firstAttribute="bottom" secondItem="61D-2O-sQ2" secondAttribute="bottom" id="Rq2-TR-0ry"/>
                 <constraint firstItem="61D-2O-sQ2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="bjP-gW-s5d"/>
                 <constraint firstItem="61D-2O-sQ2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fB6-oo-r4L"/>
                 <constraint firstAttribute="bottom" secondItem="61D-2O-sQ2" secondAttribute="bottom" id="gFe-rB-Zv1"/>
+                <constraint firstItem="61D-2O-sQ2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="zH2-Bv-4lS"/>
             </constraints>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="117" y="286"/>
+            <point key="canvasLocation" x="-91" y="238"/>
         </view>
     </objects>
 </document>

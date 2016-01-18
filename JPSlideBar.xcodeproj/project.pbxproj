@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180EFCF51C4CBDC30016F2B8 /* JPSlideBarGif01.gif in Resources */ = {isa = PBXBuildFile; fileRef = 180EFCF11C4CBDC30016F2B8 /* JPSlideBarGif01.gif */; };
+		180EFCF61C4CBDC30016F2B8 /* JPSlideBarGif02.gif in Resources */ = {isa = PBXBuildFile; fileRef = 180EFCF21C4CBDC30016F2B8 /* JPSlideBarGif02.gif */; };
+		180EFCF71C4CBDC30016F2B8 /* JPSlideBarGif03.gif in Resources */ = {isa = PBXBuildFile; fileRef = 180EFCF31C4CBDC30016F2B8 /* JPSlideBarGif03.gif */; };
+		180EFCF81C4CBDC30016F2B8 /* JPSlideBarGif04.gif in Resources */ = {isa = PBXBuildFile; fileRef = 180EFCF41C4CBDC30016F2B8 /* JPSlideBarGif04.gif */; };
 		183E56F81C3B965E00DE4314 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183E56F71C3B965E00DE4314 /* ViewController.m */; };
 		183E56FF1C3B9AB200DE4314 /* CollectViewTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 183E56FD1C3B9AB200DE4314 /* CollectViewTestVC.m */; };
 		183E57001C3B9AB200DE4314 /* CollectViewTestVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183E56FE1C3B9AB200DE4314 /* CollectViewTestVC.xib */; };
+		1847E2E31C4C725C001301CF /* ScrollTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1847E2E21C4C725C001301CF /* ScrollTestVC.m */; };
 		185A2A151C337F140074075C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A2A141C337F140074075C /* main.m */; };
 		185A2A181C337F140074075C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A2A171C337F140074075C /* AppDelegate.m */; };
 		185A2A1E1C337F140074075C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185A2A1C1C337F140074075C /* Main.storyboard */; };
@@ -17,14 +22,12 @@
 		185A2A231C337F140074075C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185A2A211C337F140074075C /* LaunchScreen.storyboard */; };
 		185A2A2E1C337F140074075C /* JPSlideBarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A2A2D1C337F140074075C /* JPSlideBarTests.m */; };
 		185A2A391C337F140074075C /* JPSlideBarUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A2A381C337F140074075C /* JPSlideBarUITests.m */; };
-		185A2A4A1C337F860074075C /* ScrollTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A2A491C337F860074075C /* ScrollTestVC.m */; };
+		18CD08371C4A4A4E00659730 /* JPSlideBar+ScrollViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CD08361C4A4A4E00659730 /* JPSlideBar+ScrollViewDelegate.m */; };
 		18CEC7B81C3BACF400C4B555 /* JPSlideBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CEC7B51C3BACF400C4B555 /* JPSlideBar.m */; };
 		18CEC7B91C3BACF400C4B555 /* UIColor+JPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CEC7B71C3BACF400C4B555 /* UIColor+JPExtension.m */; };
 		18CEC7BD1C3BBF7800C4B555 /* JPBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CEC7BB1C3BBF7800C4B555 /* JPBaseTableViewController.m */; };
 		18CEC7BE1C3BBF7800C4B555 /* JPBaseTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CEC7BC1C3BBF7800C4B555 /* JPBaseTableViewController.xib */; };
 		18CEC7C11C3BBF9E00C4B555 /* JPTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CEC7C01C3BBF9E00C4B555 /* JPTableViewCell.m */; };
-		18CEC8071C3BE83800C4B555 /* JPSlideBar_One.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CEC8051C3BE83800C4B555 /* JPSlideBar_One.png */; };
-		18CEC8081C3BE83800C4B555 /* JPSlideBar_Two.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CEC8061C3BE83800C4B555 /* JPSlideBar_Two.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,11 +48,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		180EFCF11C4CBDC30016F2B8 /* JPSlideBarGif01.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = JPSlideBarGif01.gif; sourceTree = "<group>"; };
+		180EFCF21C4CBDC30016F2B8 /* JPSlideBarGif02.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = JPSlideBarGif02.gif; sourceTree = "<group>"; };
+		180EFCF31C4CBDC30016F2B8 /* JPSlideBarGif03.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = JPSlideBarGif03.gif; sourceTree = "<group>"; };
+		180EFCF41C4CBDC30016F2B8 /* JPSlideBarGif04.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = JPSlideBarGif04.gif; sourceTree = "<group>"; };
 		183E56F61C3B965E00DE4314 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		183E56F71C3B965E00DE4314 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		183E56FC1C3B9AB200DE4314 /* CollectViewTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectViewTestVC.h; sourceTree = "<group>"; };
 		183E56FD1C3B9AB200DE4314 /* CollectViewTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectViewTestVC.m; sourceTree = "<group>"; };
 		183E56FE1C3B9AB200DE4314 /* CollectViewTestVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectViewTestVC.xib; sourceTree = "<group>"; };
+		1847E2E21C4C725C001301CF /* ScrollTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollTestVC.m; sourceTree = "<group>"; };
 		185A2A101C337F140074075C /* JPSlideBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JPSlideBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		185A2A141C337F140074075C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		185A2A161C337F140074075C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -65,7 +73,8 @@
 		185A2A381C337F140074075C /* JPSlideBarUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPSlideBarUITests.m; sourceTree = "<group>"; };
 		185A2A3A1C337F140074075C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		185A2A481C337F860074075C /* ScrollTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollTestVC.h; sourceTree = "<group>"; };
-		185A2A491C337F860074075C /* ScrollTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollTestVC.m; sourceTree = "<group>"; };
+		18CD08351C4A4A4E00659730 /* JPSlideBar+ScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JPSlideBar+ScrollViewDelegate.h"; sourceTree = "<group>"; };
+		18CD08361C4A4A4E00659730 /* JPSlideBar+ScrollViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JPSlideBar+ScrollViewDelegate.m"; sourceTree = "<group>"; };
 		18CEC7B41C3BACF400C4B555 /* JPSlideBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPSlideBar.h; sourceTree = "<group>"; };
 		18CEC7B51C3BACF400C4B555 /* JPSlideBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPSlideBar.m; sourceTree = "<group>"; };
 		18CEC7B61C3BACF400C4B555 /* UIColor+JPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+JPExtension.h"; sourceTree = "<group>"; };
@@ -75,8 +84,6 @@
 		18CEC7BC1C3BBF7800C4B555 /* JPBaseTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JPBaseTableViewController.xib; sourceTree = "<group>"; };
 		18CEC7BF1C3BBF9E00C4B555 /* JPTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPTableViewCell.h; sourceTree = "<group>"; };
 		18CEC7C01C3BBF9E00C4B555 /* JPTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPTableViewCell.m; sourceTree = "<group>"; };
-		18CEC8051C3BE83800C4B555 /* JPSlideBar_One.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JPSlideBar_One.png; sourceTree = "<group>"; };
-		18CEC8061C3BE83800C4B555 /* JPSlideBar_Two.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JPSlideBar_Two.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,7 +185,7 @@
 				18CEC7BF1C3BBF9E00C4B555 /* JPTableViewCell.h */,
 				18CEC7C01C3BBF9E00C4B555 /* JPTableViewCell.m */,
 				185A2A481C337F860074075C /* ScrollTestVC.h */,
-				185A2A491C337F860074075C /* ScrollTestVC.m */,
+				1847E2E21C4C725C001301CF /* ScrollTestVC.m */,
 				183E56FC1C3B9AB200DE4314 /* CollectViewTestVC.h */,
 				183E56FD1C3B9AB200DE4314 /* CollectViewTestVC.m */,
 				183E56FE1C3B9AB200DE4314 /* CollectViewTestVC.xib */,
@@ -189,6 +196,8 @@
 		18CEC7B31C3BACF400C4B555 /* JPSlideBar */ = {
 			isa = PBXGroup;
 			children = (
+				18CD08351C4A4A4E00659730 /* JPSlideBar+ScrollViewDelegate.h */,
+				18CD08361C4A4A4E00659730 /* JPSlideBar+ScrollViewDelegate.m */,
 				18CEC7B41C3BACF400C4B555 /* JPSlideBar.h */,
 				18CEC7B51C3BACF400C4B555 /* JPSlideBar.m */,
 				18CEC7B61C3BACF400C4B555 /* UIColor+JPExtension.h */,
@@ -200,8 +209,10 @@
 		18CEC8041C3BE83800C4B555 /* ExamplerImages */ = {
 			isa = PBXGroup;
 			children = (
-				18CEC8051C3BE83800C4B555 /* JPSlideBar_One.png */,
-				18CEC8061C3BE83800C4B555 /* JPSlideBar_Two.png */,
+				180EFCF11C4CBDC30016F2B8 /* JPSlideBarGif01.gif */,
+				180EFCF21C4CBDC30016F2B8 /* JPSlideBarGif02.gif */,
+				180EFCF31C4CBDC30016F2B8 /* JPSlideBarGif03.gif */,
+				180EFCF41C4CBDC30016F2B8 /* JPSlideBarGif04.gif */,
 			);
 			path = ExamplerImages;
 			sourceTree = "<group>";
@@ -273,6 +284,7 @@
 				TargetAttributes = {
 					185A2A0F1C337F140074075C = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = Y7H6F7S5DJ;
 					};
 					185A2A281C337F140074075C = {
 						CreatedOnToolsVersion = 7.0;
@@ -309,10 +321,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18CEC8071C3BE83800C4B555 /* JPSlideBar_One.png in Resources */,
+				180EFCF71C4CBDC30016F2B8 /* JPSlideBarGif03.gif in Resources */,
+				180EFCF61C4CBDC30016F2B8 /* JPSlideBarGif02.gif in Resources */,
+				180EFCF51C4CBDC30016F2B8 /* JPSlideBarGif01.gif in Resources */,
+				180EFCF81C4CBDC30016F2B8 /* JPSlideBarGif04.gif in Resources */,
 				183E57001C3B9AB200DE4314 /* CollectViewTestVC.xib in Resources */,
 				185A2A231C337F140074075C /* LaunchScreen.storyboard in Resources */,
-				18CEC8081C3BE83800C4B555 /* JPSlideBar_Two.png in Resources */,
 				18CEC7BE1C3BBF7800C4B555 /* JPBaseTableViewController.xib in Resources */,
 				185A2A201C337F140074075C /* Assets.xcassets in Resources */,
 				185A2A1E1C337F140074075C /* Main.storyboard in Resources */,
@@ -341,13 +355,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				183E56F81C3B965E00DE4314 /* ViewController.m in Sources */,
-				185A2A4A1C337F860074075C /* ScrollTestVC.m in Sources */,
 				18CEC7B91C3BACF400C4B555 /* UIColor+JPExtension.m in Sources */,
 				185A2A181C337F140074075C /* AppDelegate.m in Sources */,
 				18CEC7BD1C3BBF7800C4B555 /* JPBaseTableViewController.m in Sources */,
 				185A2A151C337F140074075C /* main.m in Sources */,
+				1847E2E31C4C725C001301CF /* ScrollTestVC.m in Sources */,
 				18CEC7C11C3BBF9E00C4B555 /* JPTableViewCell.m in Sources */,
 				183E56FF1C3B9AB200DE4314 /* CollectViewTestVC.m in Sources */,
+				18CD08371C4A4A4E00659730 /* JPSlideBar+ScrollViewDelegate.m in Sources */,
 				18CEC7B81C3BACF400C4B555 /* JPSlideBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -487,6 +502,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = JPSlideBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.XiFengLang.JPSlideBar;
@@ -498,6 +514,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = JPSlideBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.XiFengLang.JPSlideBar;
