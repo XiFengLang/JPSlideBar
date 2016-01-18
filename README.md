@@ -12,15 +12,21 @@
 
 ###功能介绍
 >暂时实现可变滚动条+字体颜色渐变搭配效果，后续会增加字体大小渐变效果，其他的效果慢慢加。
+
 >titles.count <= 5时只能点击SlideBar，并且等宽平铺处理，可以轻松应付切换2-5个内容页的界面。
->Demo里面的例子用了ScrollView/CollectionView添加SubViewController.view的模式，后续会模仿简书首页切换3个内容界面的效果.
->内部通过计算实现监测翻页，外部可以接收NSNotification可以做一些处理
+
+>Demo里面的例子用了ScrollView/CollectionView添加SubViewController.view的模式，后续会模仿简书首页切换3个内容界面的效果。
+
+>内部通过计算实现监测翻页，外部可以接收NSNotification做一些处理。
 
 ###升级简介
 V2.1版
->内部实现KVO以及翻页监测，使用更加灵活，
->解决内存泄露BUG.
->解决滑动过快而不调用scrollViewDidEndDecelerating的BUG
+>内部实现KVO以及翻页监测，使用更加灵活。
+
+>解决内存泄露BUG。
+
+>解决滑动过快而不调用scrollViewDidEndDecelerating的BUG。
+
 >解决滑动条滚动到边缘后留有空隙的BUG。
 
 ###Usage
