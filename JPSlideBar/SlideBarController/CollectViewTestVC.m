@@ -29,6 +29,17 @@ static NSString * const MYKEY = @"UICollectionViewCell";
     self.collectionView.dataSource = self;
     
     
+    // 解决scrollView的pan手势和侧滑返回手势冲突,ScrollView+VC.view的模式尽量不要用leftBarButtonItem
+    NSArray *gestureArray = self.navigationController.view.gestureRecognizers;
+    for (UIGestureRecognizer *gesture in gestureArray) {
+        if ([gesture isKindOfClass:[UIScreenEdgePanGestureRecognizer class]]) {
+            [self.collectionView.panGestureRecognizer requireGestureRecognizerToFail:gesture];
+            break;
+        }
+    }
+
+    
+    
     [self addJPSlideBar];
     
 }
@@ -45,11 +56,10 @@ static NSString * const MYKEY = @"UICollectionViewCell";
         vc.dataSourceArray = [self.titleArray mutableCopy];
         [self addChildViewController:vc];
     }
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(back)];
 }
 
 - (void)addJPSlideBar{
-#pragma mark -【1、初始化并显示底层毛玻璃/有数据再配置slideBar】
+    
     self.slideBar = [JPSlideBar showInViewController:self
                                 observableScrollView:self.collectionView
                                         frameOriginY:64
@@ -88,7 +98,6 @@ static NSString * const MYKEY = @"UICollectionViewCell";
 - (void)back{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
 #pragma mark - collectionView代理
 
 

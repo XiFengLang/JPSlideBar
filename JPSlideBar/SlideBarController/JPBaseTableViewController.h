@@ -16,7 +16,7 @@
 
 #define JCRandomColor [UIColor colorWithRed: arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1]
 
-@interface JPBaseTableViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
+@interface JPBaseTableViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong)NSMutableArray * dataSourceArray;

@@ -8,7 +8,7 @@
 
 #import "ScrollTestVC.h"
 #import "JPBaseTableViewController.h"
-@interface ScrollTestVC ()
+@interface ScrollTestVC ()<UIGestureRecognizerDelegate>
 {
     NSArray * titles;
 }
@@ -27,6 +27,15 @@
     [self initializeUI];
     self.scrollView.decelerationRate = 1.0;
     
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    // 解决scrollView的pan手势和侧滑返回手势冲突
+    NSArray *gestureArray = self.navigationController.view.gestureRecognizers;
+    for (UIGestureRecognizer *gesture in gestureArray) {
+        if ([gesture isKindOfClass:[UIScreenEdgePanGestureRecognizer class]]) {
+            [self.scrollView.panGestureRecognizer requireGestureRecognizerToFail:gesture];
+            break;
+        }
+    }
 
     self.slideBar = [JPSlideBar showInViewController:self
                                 observableScrollView:self.scrollView
@@ -56,24 +65,10 @@
     JKLog(@"offsetX:%f    index:%ld",offsetX,index);
 }
 
-
-
-
-
-
-
-
-
-- (void)back{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (void)initializeUI{
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"JPSlideBar";
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]}];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(back)];
-    
     
     [self initializeScrollViewWithStatusBarHeight:(64)];
     [self setupScrollViewSubViewsWithNumber:titles.count];

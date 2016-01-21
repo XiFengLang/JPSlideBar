@@ -10,6 +10,7 @@
 #import "ScrollTestVC.h"
 #import "JPTableViewCell.h"
 #import "CollectViewTestVC.h"
+#import "TestGestureVC.h"
 
 @interface ViewController () 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -20,9 +21,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.masterDataArray addObject:@"ScrollView上添加多个子控制的View"];
     [self.masterDataArray addObject:@"CollectionView添加多个子控制的View"];
+    [self.masterDataArray addObject:@"测试侧滑手势冲突,会影响上2个界面的侧滑(待解)"];
 }
 
 
@@ -66,6 +68,9 @@
         [self pushToScrollTestVC];
     }else if (indexPath.row == 1){
         [self pushToCollectionViewTestVC];
+    }else if (indexPath.row == 2){
+        TestGestureVC * gesture = [[TestGestureVC alloc]init];
+        [self.navigationController pushViewController:gesture animated:YES];
     }
 }
 

@@ -11,6 +11,7 @@
 		180EFCF61C4CBDC30016F2B8 /* JPSlideBarGif02.gif in Resources */ = {isa = PBXBuildFile; fileRef = 180EFCF21C4CBDC30016F2B8 /* JPSlideBarGif02.gif */; };
 		180EFCF71C4CBDC30016F2B8 /* JPSlideBarGif03.gif in Resources */ = {isa = PBXBuildFile; fileRef = 180EFCF31C4CBDC30016F2B8 /* JPSlideBarGif03.gif */; };
 		180EFCF81C4CBDC30016F2B8 /* JPSlideBarGif04.gif in Resources */ = {isa = PBXBuildFile; fileRef = 180EFCF41C4CBDC30016F2B8 /* JPSlideBarGif04.gif */; };
+		183A487C1C50BBB800B895C8 /* TestGestureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 183A487B1C50BBB800B895C8 /* TestGestureVC.m */; };
 		183E56F81C3B965E00DE4314 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183E56F71C3B965E00DE4314 /* ViewController.m */; };
 		183E56FF1C3B9AB200DE4314 /* CollectViewTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 183E56FD1C3B9AB200DE4314 /* CollectViewTestVC.m */; };
 		183E57001C3B9AB200DE4314 /* CollectViewTestVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183E56FE1C3B9AB200DE4314 /* CollectViewTestVC.xib */; };
@@ -52,6 +53,8 @@
 		180EFCF21C4CBDC30016F2B8 /* JPSlideBarGif02.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = JPSlideBarGif02.gif; sourceTree = "<group>"; };
 		180EFCF31C4CBDC30016F2B8 /* JPSlideBarGif03.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = JPSlideBarGif03.gif; sourceTree = "<group>"; };
 		180EFCF41C4CBDC30016F2B8 /* JPSlideBarGif04.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = JPSlideBarGif04.gif; sourceTree = "<group>"; };
+		183A487A1C50BBB800B895C8 /* TestGestureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestGestureVC.h; sourceTree = "<group>"; };
+		183A487B1C50BBB800B895C8 /* TestGestureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestGestureVC.m; sourceTree = "<group>"; };
 		183E56F61C3B965E00DE4314 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		183E56F71C3B965E00DE4314 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		183E56FC1C3B9AB200DE4314 /* CollectViewTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectViewTestVC.h; sourceTree = "<group>"; };
@@ -140,6 +143,8 @@
 				185A2A171C337F140074075C /* AppDelegate.m */,
 				183E56F61C3B965E00DE4314 /* ViewController.h */,
 				183E56F71C3B965E00DE4314 /* ViewController.m */,
+				183A487A1C50BBB800B895C8 /* TestGestureVC.h */,
+				183A487B1C50BBB800B895C8 /* TestGestureVC.m */,
 				185A2A1C1C337F140074075C /* Main.storyboard */,
 				185A2A1F1C337F140074075C /* Assets.xcassets */,
 				185A2A211C337F140074075C /* LaunchScreen.storyboard */,
@@ -361,6 +366,7 @@
 				185A2A151C337F140074075C /* main.m in Sources */,
 				1847E2E31C4C725C001301CF /* ScrollTestVC.m in Sources */,
 				18CEC7C11C3BBF9E00C4B555 /* JPTableViewCell.m in Sources */,
+				183A487C1C50BBB800B895C8 /* TestGestureVC.m in Sources */,
 				183E56FF1C3B9AB200DE4314 /* CollectViewTestVC.m in Sources */,
 				18CD08371C4A4A4E00659730 /* JPSlideBar+ScrollViewDelegate.m in Sources */,
 				18CEC7B81C3BACF400C4B555 /* JPSlideBar.m in Sources */,
