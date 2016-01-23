@@ -148,6 +148,7 @@
         default:
             break;
     }
+    [self addBottomLine];
 }
 
 
@@ -508,7 +509,7 @@
         rect.origin.x = [self.labelCenterXArray[index] floatValue]-[self.sliderWidthArray[index] floatValue]/2.0;
         rect.size.width = [self.sliderWidthArray[index] floatValue];
         
-        [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             self.sliderLine.frame = rect;
         } completion:nil];    }
 }
@@ -521,6 +522,16 @@
     CGSize maxSize = CGSizeMake(MAXFLOAT, JPSLIDER_HEIGHT);
     CGSize size = [string boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
     return ceil(size.width);
+}
+
+- (void)addBottomLine{
+    CALayer * layer = [CALayer layer];
+    layer.bounds = CGRectMake(0, 0, JPSCREEN_WIDTH, 0.7);
+    layer.position = CGPointMake(0, JPSLIDER_HEIGHT);
+    layer.anchorPoint = CGPointMake(0, 1);
+    layer.backgroundColor = [[UIColor lightGrayColor]colorWithAlphaComponent:0.6].CGColor;
+    
+    [self.contentView.layer addSublayer:layer];
 }
 
 
