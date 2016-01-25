@@ -354,11 +354,12 @@
             return;  // scrollView.bounces = YES时生效，或者为NO时到边上了还一直侧滑时生效,
         }
         
-        if (self.observedScrollView.delegate && self.observedScrollView.delegate != self) {
-            _delegate = self.observedScrollView.delegate;
+        if (self.observedScrollView.delegate != self) {
+            if (self.observedScrollView.delegate) {
+                _delegate = self.observedScrollView.delegate;
+            }
             self.observedScrollView.delegate = self;
         }
-        
         
         NSInteger destinationIndex = (NSInteger)((self.screenWidth/2.0 + offsetX)/self.screenWidth);
         [self didSelectedSlideBarItemAtIndex:destinationIndex isLabelClicked:NO];
