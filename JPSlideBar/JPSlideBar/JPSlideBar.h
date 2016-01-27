@@ -16,17 +16,17 @@
 #define JColor_RGB(R,G,B)         ([UIColor colorWithRed:(R)/255.0 green:(G)/255.0 blue:(B)/255.0 alpha:1.0])
 
 
-#define JPSLIDER_ITEM_SPACE 20.0
-#define JPSLIDER_HEIGHT  42.0
-#define JPSCREEN_WIDTH  [UIScreen mainScreen].bounds.size.width
-#define JPSCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
-#define JPSLIDER_FONT   [UIFont systemFontOfSize:18]
+#define JPSlider_Item_Space 20.0
+#define JPSlider_Height     42.0
+#define JPScreen_Width      [UIScreen mainScreen].bounds.size.width
+#define JPScreen_Height     [UIScreen mainScreen].bounds.size.height
+#define JPSlider_Font       [UIFont systemFontOfSize:18]
 
 
-#define JPNotificationCenter [NSNotificationCenter defaultCenter]
-#define JPScrollViewDidChangePageNotification  @"didChangePageNotification"
-#define JPScrollViewContentOffsetX  @"contentOffsetX"
-#define JPSlideBarCurrentIndex      @"currentIndex"
+#define JPNotificationCenter                    [NSNotificationCenter defaultCenter]
+#define JPScrollViewDidChangePageNotification   @"didChangePageNotification"
+#define JPScrollViewContentOffsetX              @"contentOffsetX"
+#define JPSlideBarCurrentIndex                  @"currentIndex"
 
 
 #ifdef  DEBUG
@@ -130,8 +130,14 @@ typedef NS_ENUM(NSInteger, JPSlideBarStyle) {
  */
 - (void)setSlideBarBackgroudColorIfNecessary:(UIColor *)color;
 
+/**
+ *  设置底部线条的颜色
+ */
+- (void)setBottomLineBackgroundColorIfNecessary:(UIColor *)color;
+
 
 - (NSInteger)indexOfSlideBarItemDidSelected;
+
 
 - (UILabel *)labelAtIndex:(NSInteger)index;
 

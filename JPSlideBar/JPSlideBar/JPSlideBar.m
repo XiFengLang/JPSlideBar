@@ -9,7 +9,7 @@
 #import "JPSlideBar.h"
 #import "JPSlideBar+ScrollViewDelegate.h"
 
-#define JPITEM_BROADENING 12 //  增宽(为了好看点，相当于slider滑动条的宽度 = 字符串长度 + 6)
+#define JPITEM_BROADENING 12 //  增宽(为了好看点，相当于slider滑动条的宽度 = 字符串长度 + 12/2)
 
 
 @interface JPSlideBar ()
@@ -31,6 +31,7 @@
 @property (nonatomic, strong)NSMutableArray * labelWidthDValueArray;
 
 @property (nonatomic, assign)JPSlideBarStyle  slideBarStyle;
+@property (nonatomic, strong)CALayer * bottomLineLayer;
 
 // 内部实现KVO以及移除KVO
 @property (nonatomic, strong)UIScrollView * observedScrollView;
@@ -82,9 +83,9 @@
     
     UIBlurEffect * blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
     JPSlideBar   * slideBar   = [[JPSlideBar  alloc]initWithEffect:blurEffect];
-    slideBar.frame = CGRectMake(0, frameOriginY, JPSCREEN_WIDTH, JPSLIDER_HEIGHT);
+    slideBar.frame = CGRectMake(0, frameOriginY, JPScreen_Width, JPSlider_Height);
     
-    slideBar.itemSpace    = space > JPSLIDER_ITEM_SPACE ? space : JPSLIDER_ITEM_SPACE;
+    slideBar.itemSpace    = space > JPSlider_Item_Space ? space : JPSlider_Item_Space;
     slideBar.itemSpace   -= JPITEM_BROADENING;  // itemSpace减去增加的宽度，宽度又会加上增加的宽度，相互抵消
     slideBar.sliderFrameY = CGRectGetHeight(slideBar.bounds)-2;
     slideBar.screenWidth  = [UIScreen mainScreen].bounds.size.width;
@@ -163,7 +164,7 @@
         if (self.titleArray.count <= 5) {   // 等宽处理
             width = self.screenWidth/self.titleArray.count;
             [self.sliderWidthArray addObject:@(width)];
-            rect = CGRectMake(index * width, 0, width, JPSLIDER_HEIGHT);
+            rect = CGRectMake(index * width, 0, width, JPSlider_Height);
             itemsTotalWidth += width;
             [self.labelCenterXArray addObject:@(itemsTotalWidth - width/2.0)];
             
@@ -172,8 +173,8 @@
             width += JPITEM_BROADENING;
             [self.sliderWidthArray addObject:@(width)];
 //            width += self.itemSpace;
-//            rect = CGRectMake(itemsTotalWidth, 0, width, JPSLIDER_HEIGHT);
-            rect = CGRectMake(itemsTotalWidth, 0, width + self.itemSpace, JPSLIDER_HEIGHT);
+//            rect = CGRectMake(itemsTotalWidth, 0, width, JPSlider_Height);
+            rect = CGRectMake(itemsTotalWidth, 0, width + self.itemSpace, JPSlider_Height);
             itemsTotalWidth += self.itemSpace + width;
             [self.labelCenterXArray addObject:@(itemsTotalWidth - (width + self.itemSpace)/2.0)];
         }
@@ -208,9 +209,9 @@
     
     
     if (self.titleArray.count <= 5) {
-        self.scrollView.contentSize = CGSizeMake(JPSCREEN_WIDTH, JPSLIDER_HEIGHT);
+        self.scrollView.contentSize = CGSizeMake(JPScreen_Width, JPSlider_Height);
     }else {
-        self.scrollView.contentSize = CGSizeMake(itemsTotalWidth, JPSLIDER_HEIGHT);
+        self.scrollView.contentSize = CGSizeMake(itemsTotalWidth, JPSlider_Height);
     }
 }
 
@@ -269,6 +270,12 @@
 
 - (UILabel *)labelAtIndex:(NSInteger)index{
     return self.labelArray[self.selectedIndex];
+}
+
+- (void)setBottomLineBackgroundColorIfNecessary:(UIColor *)color{
+    if (self.bottomLineLayer) {
+        self.bottomLineLayer.backgroundColor = color.CGColor;
+    }
 }
 
 
@@ -552,18 +559,18 @@ CGFloat maxSizeValur = 1.3;
 //  计算字符串宽度
 - (CGFloat)widthOfString:(NSString *)string{
     NSDictionary *attributes = @{NSFontAttributeName : self.font};
-    CGSize maxSize = CGSizeMake(MAXFLOAT, JPSLIDER_HEIGHT);
+    CGSize maxSize = CGSizeMake(MAXFLOAT, JPSlider_Height);
     CGSize size = [string boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
     return ceil(size.width);
 }
 
 - (void)addBottomLine{
     CALayer * layer = [CALayer layer];
-    layer.bounds = CGRectMake(0, 0, JPSCREEN_WIDTH, 0.7);
-    layer.position = CGPointMake(0, JPSLIDER_HEIGHT);
+    layer.bounds = CGRectMake(0, 0, JPScreen_Width, 0.7);
+    layer.position = CGPointMake(0, JPSlider_Height);
     layer.anchorPoint = CGPointMake(0, 1);
     layer.backgroundColor = [self.selectedColor colorWithAlphaComponent:0.6].CGColor;
-    
+    self.bottomLineLayer = layer;
     [self.contentView.layer addSublayer:layer];
 }
 
@@ -572,7 +579,7 @@ CGFloat maxSizeValur = 1.3;
 
 - (UIScrollView *)scrollView{
     if (!_scrollView) {
-        _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, JPSCREEN_WIDTH, JPSLIDER_HEIGHT)];
+        _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, JPScreen_Width, JPSlider_Height)];
         _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.showsVerticalScrollIndicator  = NO;
         _scrollView.bounces  = YES;
@@ -602,7 +609,7 @@ CGFloat maxSizeValur = 1.3;
 
 - (UIFont *)font{
     if (!_font) {
-        _font = JPSLIDER_FONT;
+        _font = JPSlider_Font;
     }return _font;
 }
 

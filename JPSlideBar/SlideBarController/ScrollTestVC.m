@@ -72,12 +72,12 @@
     
     [self initializeScrollViewWithStatusBarHeight:(64)];
     [self setupScrollViewSubViewsWithNumber:titles.count];
-    self.scrollView.contentSize = CGSizeMake(titles.count * JPSCREEN_WIDTH, CGRectGetHeight(self.scrollView.bounds));
+    self.scrollView.contentSize = CGSizeMake(titles.count * JPScreen_Width, CGRectGetHeight(self.scrollView.bounds));
 }
 
 
 - (void)initializeScrollViewWithStatusBarHeight:(CGFloat)statusBarHeight{
-    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, statusBarHeight, JPSCREEN_WIDTH, JPSCREEN_HEIGHT-statusBarHeight)];
+    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, statusBarHeight, JPScreen_Width, JPScreen_Height-statusBarHeight)];
     self.scrollView.showsHorizontalScrollIndicator= NO;
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.pagingEnabled = YES;
