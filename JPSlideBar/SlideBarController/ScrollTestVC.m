@@ -41,7 +41,7 @@
                                 observableScrollView:self.scrollView
                                         frameOriginY:64
                                            itemSpace:30
-                                 slideBarSliderStyle:JPSlideBarStyleGradientColorOnly];
+                                 slideBarSliderStyle:JPSlideBarStyleTransformationAndGradientColor];
     
     Weak(self); //避免循环引用
     [self.slideBar configureSlideBarWithTitles:titles

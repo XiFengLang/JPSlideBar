@@ -140,10 +140,10 @@
             [self displaySliderLine];
             break;
             
-//        case JPSlideBarStyleTransformationAndGradientColor:
-//            [self.normalColor   jp_decomposeColorObjectIntoRGBValue];
-//            [self.selectedColor jp_decomposeColorObjectIntoRGBValue];
-//            break;
+        case JPSlideBarStyleTransformationAndGradientColor:
+            [self.normalColor   jp_decomposeColorObjectIntoRGBValue];
+            [self.selectedColor jp_decomposeColorObjectIntoRGBValue];
+            break;
             
         default:
             break;
@@ -187,7 +187,9 @@
 //            self.currentCenterX = itemsTotalWidth - width/2.0;
             self.currentCenterX = itemsTotalWidth - (width + self.itemSpace)/2.0;
             label.textColor = self.selectedColor;
-            
+            if (self.slideBarStyle == JPSlideBarStyleTransformationAndGradientColor) {
+                label.transform = CGAffineTransformMakeScale(maxSizeValur, maxSizeValur);
+            }
         }else{
             // 计算相邻Label的width和center.x的偏差
             label.textColor = self.normalColor;
@@ -265,6 +267,10 @@
     return self.selectedIndex;
 }
 
+- (UILabel *)labelAtIndex:(NSInteger)index{
+    return self.labelArray[self.selectedIndex];
+}
+
 
 #pragma mark - ScrollViewDelegate(其他的代理方法在分类实现)
 
@@ -294,6 +300,7 @@
     }
     
     CGFloat index = scrollView.contentOffset.x/self.screenWidth;
+    JKLog(@"%f",roundf(index));
     if(roundf(index) == 1 && self.isScrollDirectionLeft){
         [self movesliderLineToDestinationIndex:roundf(index)];
     }else if (roundf(index) == self.titleArray.count-2 && self.isScrollDirectionLeft == NO){
@@ -402,10 +409,14 @@
         
         if (self.slideBarStyle == JPSlideBarStyleShowSliderAndGradientColor ||
             self.slideBarStyle == JPSlideBarStyleGradientColorOnly ) {
-//            || self.slideBarStyle == JPSlideBarStyleTransformationAndGradientColor) {
             [self displayGradientColorWithLeftIndex:leftIndex andRightIndex:rightIndex scale:scale];
         }
         
+        
+        if (self.slideBarStyle == JPSlideBarStyleTransformationAndGradientColor) {
+            [self displayGradientColorWithLeftIndex:leftIndex andRightIndex:rightIndex scale:scale];
+            [self displayGradientSizeWithLeftIndex:leftIndex andRightIndex:rightIndex scale:scale];
+        }
         
         if (self.slideBarStyle == JPSlideBarStyleShowSliderAndGradientColor ||
             self.slideBarStyle == JPSlideBarStyleShowSliderAndChangeColor) {
@@ -445,6 +456,12 @@
             self.selectedLabel.textColor = self.normalColor;
             label.textColor   = self.selectedColor;
             
+            if (self.slideBarStyle == JPSlideBarStyleTransformationAndGradientColor) {
+                [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                    label.transform = CGAffineTransformMakeScale(maxSizeValur, maxSizeValur);
+                    self.selectedLabel.transform = CGAffineTransformIdentity;
+                } completion:nil];
+            }
         }else if (self.slideBarStyle != JPSlideBarStyleShowSliderAndGradientColor){
             self.selectedLabel.textColor = self.normalColor;
             label.textColor   = self.selectedColor;
@@ -482,7 +499,22 @@
                                                 self.selectedColor.GValue - scale * GDValur,
                                                 self.selectedColor.BValue - scale * BDValur);
     }
-    
+}
+
+//  大小渐变,最大1.5,统一修改
+CGFloat sizeDValur = 0.3;
+CGFloat maxSizeValur = 1.3;
+
+- (void)displayGradientSizeWithLeftIndex:(NSInteger)leftIndex andRightIndex:(NSInteger)rightIndex scale:(CGFloat)scale{
+    UILabel * leftLabel = self.labelArray[leftIndex];
+    UILabel * rightLabel = self.labelArray[rightIndex];
+    if (scale > 0) {
+        rightLabel.transform = CGAffineTransformMakeScale(1+ scale * sizeDValur, 1+ scale * sizeDValur);
+        leftLabel.transform = CGAffineTransformMakeScale(maxSizeValur- scale * sizeDValur, maxSizeValur- scale * sizeDValur);
+    }else if (scale < 0){
+        rightLabel.transform = CGAffineTransformMakeScale(maxSizeValur+ scale * sizeDValur, maxSizeValur+ scale * sizeDValur);
+        leftLabel.transform = CGAffineTransformMakeScale(1- scale * sizeDValur, 1- scale * sizeDValur);
+    }
 }
 
 
@@ -530,7 +562,7 @@
     layer.bounds = CGRectMake(0, 0, JPSCREEN_WIDTH, 0.7);
     layer.position = CGPointMake(0, JPSLIDER_HEIGHT);
     layer.anchorPoint = CGPointMake(0, 1);
-    layer.backgroundColor = [[UIColor lightGrayColor]colorWithAlphaComponent:0.6].CGColor;
+    layer.backgroundColor = [self.selectedColor colorWithAlphaComponent:0.6].CGColor;
     
     [self.contentView.layer addSublayer:layer];
 }

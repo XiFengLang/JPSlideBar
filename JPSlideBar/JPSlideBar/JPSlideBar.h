@@ -78,9 +78,9 @@ typedef NS_ENUM(NSInteger, JPSlideBarStyle) {
      */
     JPSlideBarStyleShowSliderAndGradientColor = 3,
     /**
-     *  大小渐变+颜色渐变(下一版本)
+     *  大小渐变+颜色渐变
      */
-    //JPSlideBarStyleTransformationAndGradientColor = 4
+    JPSlideBarStyleTransformationAndGradientColor = 4
 };
 
 
@@ -125,14 +125,6 @@ typedef NS_ENUM(NSInteger, JPSlideBarStyle) {
                       selectedBlock:(JPSlideBarSelectedBlock)selectedBlock;
 
 
-///**   新版不再支持外部调用这个方法
-// *  observableScrollView为nil时，在ScrollViewDidScroll代理方法中调用
-// *
-// *  @param offsetX scrollView的偏移量
-// */
-//- (void)updateSlideBarWhenScrollViewDidScrollWithOffsetX:(CGFloat)offsetX;
-
-
 /**
  *  设置背景颜色,默认使用磨砂效果、半透明，设置背景颜色后可覆盖
  */
@@ -140,5 +132,7 @@ typedef NS_ENUM(NSInteger, JPSlideBarStyle) {
 
 
 - (NSInteger)indexOfSlideBarItemDidSelected;
+
+- (UILabel *)labelAtIndex:(NSInteger)index;
 
 @end
