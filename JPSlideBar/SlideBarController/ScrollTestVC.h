@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "JPSlideBar.h"
+
 @interface ScrollTestVC : UIViewController <UIScrollViewDelegate>
 
 

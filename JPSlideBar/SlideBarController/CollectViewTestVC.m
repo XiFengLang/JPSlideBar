@@ -13,7 +13,7 @@
 @interface CollectViewTestVC ()
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong)NSArray * titleArray;
-@property (nonatomic, strong)JPSlideBar * slideBar;
+@property (nonatomic, strong)JPSlideNavigationBar * slideBar;
 @end
 
 @implementation CollectViewTestVC
@@ -60,7 +60,7 @@ static NSString * const MYKEY = @"UICollectionViewCell";
 
 - (void)addJPSlideBar{
     
-    self.slideBar = [JPSlideBar showInViewController:self
+    self.slideBar = [JPSlideNavigationBar showInViewController:self
                                 observableScrollView:self.collectionView
                                         frameOriginY:64
                                            itemSpace:30

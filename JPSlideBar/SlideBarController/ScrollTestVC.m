@@ -13,7 +13,7 @@
     NSArray * titles;
 }
 @property (nonatomic, strong)UIScrollView * scrollView;
-@property (nonatomic, strong)JPSlideBar * slideBar;
+@property (nonatomic, strong)JPSlideNavigationBar * slideBar;
 
 @end
 
@@ -37,7 +37,7 @@
         }
     }
 
-    self.slideBar = [JPSlideBar showInViewController:self
+    self.slideBar = [JPSlideNavigationBar showInViewController:self
                                 observableScrollView:self.scrollView
                                         frameOriginY:64
                                            itemSpace:30

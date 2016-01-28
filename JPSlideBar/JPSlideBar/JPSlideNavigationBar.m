@@ -1,5 +1,5 @@
 //
-//  JPSlideBar.m
+//  JPSlideNavigationBar.m
 //  JPSlideBar
 //
 //  Created by apple on 15/12/30.
@@ -12,7 +12,7 @@
 #define JPITEM_BROADENING 12 //  增宽(为了好看点，相当于slider滑动条的宽度 = 字符串长度 + 12/2)
 
 
-@interface JPSlideBar ()
+@interface JPSlideNavigationBar ()
 
 @property (nonatomic, copy)JPSlideBarSelectedBlock selectedBlock;
 // collectionView会复用，采用scrollView+Label+Tap更适合
@@ -67,13 +67,12 @@
 //  selectedIndex是修改颜色后的Index，只在修改颜色的方法中修改，防止主线程重复刷新颜色（尽量只刷新一次）
 @property (nonatomic, assign)NSInteger selectedIndex;
 
-
 @property (nonatomic, assign)NSInteger lastSelectedIndex;
 @property (nonatomic, assign)CGFloat currentPages;
-
 @end
 
-@implementation JPSlideBar
+
+@implementation JPSlideNavigationBar
 
 + (instancetype)showInViewController:(UIViewController *)viewController
                 observableScrollView:(UIScrollView *)scrollView
@@ -82,7 +81,7 @@
                  slideBarSliderStyle:(JPSlideBarStyle)slideBarStyle{
     
     UIBlurEffect * blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-    JPSlideBar   * slideBar   = [[JPSlideBar  alloc]initWithEffect:blurEffect];
+    JPSlideNavigationBar   * slideBar   = [[JPSlideNavigationBar  alloc]initWithEffect:blurEffect];
     slideBar.frame = CGRectMake(0, frameOriginY, JPScreen_Width, JPSlider_Height);
     
     slideBar.itemSpace    = space > JPSlider_Item_Space ? space : JPSlider_Item_Space;

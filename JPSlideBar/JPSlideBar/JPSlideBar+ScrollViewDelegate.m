@@ -8,7 +8,7 @@
 
 #import "JPSlideBar+ScrollViewDelegate.h"
 
-@implementation JPSlideBar (ScrollViewDelegate)
+@implementation JPSlideNavigationBar (ScrollViewDelegate)
 
 //- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
 //    if ([self.delegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)]) {

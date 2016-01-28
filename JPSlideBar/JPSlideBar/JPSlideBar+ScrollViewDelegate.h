@@ -6,8 +6,8 @@
 //  Copyright © 2016年 XiFengLang. All rights reserved.
 //
 
-#import "JPSlideBar.h"
+#import "JPSlideNavigationBar.h"
 
-@interface JPSlideBar (ScrollViewDelegate)
+@interface JPSlideNavigationBar (ScrollViewDelegate)
 
 @end

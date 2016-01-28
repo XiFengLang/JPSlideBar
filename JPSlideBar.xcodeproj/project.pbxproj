@@ -24,7 +24,7 @@
 		185A2A2E1C337F140074075C /* JPSlideBarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A2A2D1C337F140074075C /* JPSlideBarTests.m */; };
 		185A2A391C337F140074075C /* JPSlideBarUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A2A381C337F140074075C /* JPSlideBarUITests.m */; };
 		18CD08371C4A4A4E00659730 /* JPSlideBar+ScrollViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CD08361C4A4A4E00659730 /* JPSlideBar+ScrollViewDelegate.m */; };
-		18CEC7B81C3BACF400C4B555 /* JPSlideBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CEC7B51C3BACF400C4B555 /* JPSlideBar.m */; };
+		18CEC7B81C3BACF400C4B555 /* JPSlideNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CEC7B51C3BACF400C4B555 /* JPSlideNavigationBar.m */; };
 		18CEC7B91C3BACF400C4B555 /* UIColor+JPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CEC7B71C3BACF400C4B555 /* UIColor+JPExtension.m */; };
 		18CEC7BD1C3BBF7800C4B555 /* JPBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CEC7BB1C3BBF7800C4B555 /* JPBaseTableViewController.m */; };
 		18CEC7BE1C3BBF7800C4B555 /* JPBaseTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CEC7BC1C3BBF7800C4B555 /* JPBaseTableViewController.xib */; };
@@ -49,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18037CB51C5A333B00418BC1 /* JPSlideBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPSlideBar.h; sourceTree = "<group>"; };
 		180EFCF11C4CBDC30016F2B8 /* JPSlideBarGif01.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = JPSlideBarGif01.gif; sourceTree = "<group>"; };
 		180EFCF21C4CBDC30016F2B8 /* JPSlideBarGif02.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = JPSlideBarGif02.gif; sourceTree = "<group>"; };
 		180EFCF31C4CBDC30016F2B8 /* JPSlideBarGif03.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = JPSlideBarGif03.gif; sourceTree = "<group>"; };
@@ -78,8 +79,8 @@
 		185A2A481C337F860074075C /* ScrollTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollTestVC.h; sourceTree = "<group>"; };
 		18CD08351C4A4A4E00659730 /* JPSlideBar+ScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JPSlideBar+ScrollViewDelegate.h"; sourceTree = "<group>"; };
 		18CD08361C4A4A4E00659730 /* JPSlideBar+ScrollViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JPSlideBar+ScrollViewDelegate.m"; sourceTree = "<group>"; };
-		18CEC7B41C3BACF400C4B555 /* JPSlideBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPSlideBar.h; sourceTree = "<group>"; };
-		18CEC7B51C3BACF400C4B555 /* JPSlideBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPSlideBar.m; sourceTree = "<group>"; };
+		18CEC7B41C3BACF400C4B555 /* JPSlideNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPSlideNavigationBar.h; sourceTree = "<group>"; };
+		18CEC7B51C3BACF400C4B555 /* JPSlideNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPSlideNavigationBar.m; sourceTree = "<group>"; };
 		18CEC7B61C3BACF400C4B555 /* UIColor+JPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+JPExtension.h"; sourceTree = "<group>"; };
 		18CEC7B71C3BACF400C4B555 /* UIColor+JPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+JPExtension.m"; sourceTree = "<group>"; };
 		18CEC7BA1C3BBF7800C4B555 /* JPBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPBaseTableViewController.h; sourceTree = "<group>"; };
@@ -201,10 +202,11 @@
 		18CEC7B31C3BACF400C4B555 /* JPSlideBar */ = {
 			isa = PBXGroup;
 			children = (
+				18037CB51C5A333B00418BC1 /* JPSlideBar.h */,
 				18CD08351C4A4A4E00659730 /* JPSlideBar+ScrollViewDelegate.h */,
 				18CD08361C4A4A4E00659730 /* JPSlideBar+ScrollViewDelegate.m */,
-				18CEC7B41C3BACF400C4B555 /* JPSlideBar.h */,
-				18CEC7B51C3BACF400C4B555 /* JPSlideBar.m */,
+				18CEC7B41C3BACF400C4B555 /* JPSlideNavigationBar.h */,
+				18CEC7B51C3BACF400C4B555 /* JPSlideNavigationBar.m */,
 				18CEC7B61C3BACF400C4B555 /* UIColor+JPExtension.h */,
 				18CEC7B71C3BACF400C4B555 /* UIColor+JPExtension.m */,
 			);
@@ -369,7 +371,7 @@
 				183A487C1C50BBB800B895C8 /* TestGestureVC.m in Sources */,
 				183E56FF1C3B9AB200DE4314 /* CollectViewTestVC.m in Sources */,
 				18CD08371C4A4A4E00659730 /* JPSlideBar+ScrollViewDelegate.m in Sources */,
-				18CEC7B81C3BACF400C4B555 /* JPSlideBar.m in Sources */,
+				18CEC7B81C3BACF400C4B555 /* JPSlideNavigationBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
