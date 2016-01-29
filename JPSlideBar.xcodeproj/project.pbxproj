@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18037CBB1C5B021200418BC1 /* JPSlideBarConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 18037CBA1C5B021200418BC1 /* JPSlideBarConst.m */; };
 		180EFCF51C4CBDC30016F2B8 /* JPSlideBarGif01.gif in Resources */ = {isa = PBXBuildFile; fileRef = 180EFCF11C4CBDC30016F2B8 /* JPSlideBarGif01.gif */; };
 		180EFCF61C4CBDC30016F2B8 /* JPSlideBarGif02.gif in Resources */ = {isa = PBXBuildFile; fileRef = 180EFCF21C4CBDC30016F2B8 /* JPSlideBarGif02.gif */; };
 		180EFCF71C4CBDC30016F2B8 /* JPSlideBarGif03.gif in Resources */ = {isa = PBXBuildFile; fileRef = 180EFCF31C4CBDC30016F2B8 /* JPSlideBarGif03.gif */; };
@@ -50,6 +51,8 @@
 
 /* Begin PBXFileReference section */
 		18037CB51C5A333B00418BC1 /* JPSlideBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPSlideBar.h; sourceTree = "<group>"; };
+		18037CB91C5B021200418BC1 /* JPSlideBarConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPSlideBarConst.h; sourceTree = "<group>"; };
+		18037CBA1C5B021200418BC1 /* JPSlideBarConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPSlideBarConst.m; sourceTree = "<group>"; };
 		180EFCF11C4CBDC30016F2B8 /* JPSlideBarGif01.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = JPSlideBarGif01.gif; sourceTree = "<group>"; };
 		180EFCF21C4CBDC30016F2B8 /* JPSlideBarGif02.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = JPSlideBarGif02.gif; sourceTree = "<group>"; };
 		180EFCF31C4CBDC30016F2B8 /* JPSlideBarGif03.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = JPSlideBarGif03.gif; sourceTree = "<group>"; };
@@ -203,6 +206,8 @@
 			isa = PBXGroup;
 			children = (
 				18037CB51C5A333B00418BC1 /* JPSlideBar.h */,
+				18037CB91C5B021200418BC1 /* JPSlideBarConst.h */,
+				18037CBA1C5B021200418BC1 /* JPSlideBarConst.m */,
 				18CD08351C4A4A4E00659730 /* JPSlideBar+ScrollViewDelegate.h */,
 				18CD08361C4A4A4E00659730 /* JPSlideBar+ScrollViewDelegate.m */,
 				18CEC7B41C3BACF400C4B555 /* JPSlideNavigationBar.h */,
@@ -361,6 +366,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18037CBB1C5B021200418BC1 /* JPSlideBarConst.m in Sources */,
 				183E56F81C3B965E00DE4314 /* ViewController.m in Sources */,
 				18CEC7B91C3BACF400C4B555 /* UIColor+JPExtension.m in Sources */,
 				185A2A181C337F140074075C /* AppDelegate.m in Sources */,

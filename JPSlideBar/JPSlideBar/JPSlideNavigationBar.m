@@ -9,29 +9,23 @@
 #import "JPSlideBar.h"
 #import "JPSlideBar+ScrollViewDelegate.h"
 
-#define JPITEM_BROADENING 12 //  增宽(为了好看点，相当于slider滑动条的宽度 = 字符串长度 + 12/2)
-
 
 @interface JPSlideNavigationBar ()
 
-@property (nonatomic, copy)JPSlideBarSelectedBlock selectedBlock;
-// collectionView会复用，采用scrollView+Label+Tap更适合
+@property (nonatomic, assign)JPSlideBarStyle  slideBarStyle;
+@property (nonatomic, copy) JPSlideBarSelectedBlock selectedBlock;
 @property (nonatomic, strong)UIScrollView * scrollView;
-// 存放title
 @property (nonatomic, strong)NSMutableArray * titleArray;
-// 存放label
 @property (nonatomic, strong)NSMutableArray * labelArray;
+
 // 存放label.center.x坐标
 @property (nonatomic, strong)NSMutableArray * labelCenterXArray;
-// 存放Label的宽度
+// 存放slider的宽度
 @property (nonatomic, strong)NSMutableArray * sliderWidthArray;
 // 存放相邻Label的center.x差值
 @property (nonatomic, strong)NSMutableArray * labelCenterDValueArray;
 // 存放相邻Label的宽度差值
 @property (nonatomic, strong)NSMutableArray * labelWidthDValueArray;
-
-@property (nonatomic, assign)JPSlideBarStyle  slideBarStyle;
-@property (nonatomic, strong)CALayer * bottomLineLayer;
 
 // 内部实现KVO以及移除KVO
 @property (nonatomic, strong)UIScrollView * observedScrollView;
@@ -46,11 +40,9 @@
 @property (nonatomic, strong)UIColor * selectedColor;
 @property (nonatomic, strong)UILabel * selectedLabel;
 
-
 @property (nonatomic, strong)UIView * sliderLine;
 @property (nonatomic, assign)CGFloat sliderFrameY;
 @property (nonatomic, assign)CGFloat itemSpace;
-@property (nonatomic, assign)CGFloat screenWidth;
 
 //  记录被观察scrollView实时X轴偏移量
 @property (nonatomic, assign)CGFloat offestXKVO;
@@ -64,35 +56,27 @@
 
 //  currentIndex相对selectedIndex而言是全局可改变、可利用的，记录当前的index，两者难以替换
 @property (nonatomic, assign)NSInteger currentIndex;
-//  selectedIndex是修改颜色后的Index，只在修改颜色的方法中修改，防止主线程重复刷新颜色（尽量只刷新一次）
+//  selectedIndex是更改颜色后的Index，在修改颜色的方法中修改，防止主线程重复刷新颜色（尽量只刷新一次）
 @property (nonatomic, assign)NSInteger selectedIndex;
 
-@property (nonatomic, assign)NSInteger lastSelectedIndex;
-@property (nonatomic, assign)CGFloat currentPages;
 @end
 
 
 @implementation JPSlideNavigationBar
 
-+ (instancetype)showInViewController:(UIViewController *)viewController
-                observableScrollView:(UIScrollView *)scrollView
-                        frameOriginY:(CGFloat)frameOriginY
-                           itemSpace:(CGFloat)space
-                 slideBarSliderStyle:(JPSlideBarStyle)slideBarStyle{
++ (instancetype)slideBarWithObservableScrollView:(UIScrollView *)scrollView
+                                  viewController:(UIViewController *)viewController
+                                    frameOriginY:(CGFloat)frameOriginY
+                             slideBarSliderStyle:(JPSlideBarStyle)slideBarStyle{
+    viewController.automaticallyAdjustsScrollViewInsets = NO;
     
     UIBlurEffect * blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-    JPSlideNavigationBar   * slideBar   = [[JPSlideNavigationBar  alloc]initWithEffect:blurEffect];
-    slideBar.frame = CGRectMake(0, frameOriginY, JPScreen_Width, JPSlider_Height);
+    JPSlideNavigationBar * slideBar = [[self alloc]initWithEffect:blurEffect];
+    slideBar.frame = CGRectMake(0, frameOriginY, JPScreen_Width, JPSlideBarHeight);
     
-    slideBar.itemSpace    = space > JPSlider_Item_Space ? space : JPSlider_Item_Space;
-    slideBar.itemSpace   -= JPITEM_BROADENING;  // itemSpace减去增加的宽度，宽度又会加上增加的宽度，相互抵消
     slideBar.sliderFrameY = CGRectGetHeight(slideBar.bounds)-2;
-    slideBar.screenWidth  = [UIScreen mainScreen].bounds.size.width;
     slideBar.slideBarStyle = slideBarStyle;
     slideBar.didEndDecelerating = NO;
-    
-    [viewController.view  addSubview:slideBar];
-    [viewController setAutomaticallyAdjustsScrollViewInsets:NO];
     
     if (scrollView) {
         slideBar.observedScrollView = scrollView;
@@ -101,8 +85,11 @@
     return slideBar;
 }
 
+
+
 - (void)configureSlideBarWithTitles:(NSArray *)titleArray
                           titleFont:(UIFont *)font
+                          itemSpace:(CGFloat)space
                 normalTitleRGBColor:(UIColor *)normalColor
               selectedTitleRGBColor:(UIColor *)selectedColor
                       selectedBlock:(JPSlideBarSelectedBlock)selectedBlock{
@@ -113,6 +100,8 @@
     if (selectedBlock) self.selectedBlock = selectedBlock;
     self.font = font;
     
+    self.itemSpace    = space > JPSlideBarItemSpacing ? space : JPSlideBarItemSpacing;
+    self.itemSpace   -= JPSlideBarItemBroadening;  // itemSpace减去增加的宽度，宽度又会加上增加的宽度，相互抵消
     [self initializeAndConfigureSlideBarItems];
     
     self.currentIndex = 0;
@@ -131,13 +120,13 @@
             break;
             
         case JPSlideBarStyleShowSliderAndChangeColor:
-            [self displaySliderLine];
+            [self initializeDisplaySliderLine];
             break;
             
         case JPSlideBarStyleShowSliderAndGradientColor:
             [self.normalColor   jp_decomposeColorObjectIntoRGBValue];
             [self.selectedColor jp_decomposeColorObjectIntoRGBValue];
-            [self displaySliderLine];
+            [self initializeDisplaySliderLine];
             break;
             
         case JPSlideBarStyleTransformationAndGradientColor:
@@ -148,7 +137,6 @@
         default:
             break;
     }
-    [self addBottomLine];
 }
 
 
@@ -161,19 +149,19 @@
         CGRect rect;
         
         if (self.titleArray.count <= 5) {   // 等宽处理
-            width = self.screenWidth/self.titleArray.count;
+            width = JPScreen_Width/self.titleArray.count;
             [self.sliderWidthArray addObject:@(width)];
-            rect = CGRectMake(index * width, 0, width, JPSlider_Height);
+            rect = CGRectMake(index * width, 0, width, JPSlideBarHeight);
             itemsTotalWidth += width;
             [self.labelCenterXArray addObject:@(itemsTotalWidth - width/2.0)];
             
         }else{
             width = [self widthOfString:self.titleArray[index]];
-            width += JPITEM_BROADENING;
+            width += JPSlideBarItemBroadening;
             [self.sliderWidthArray addObject:@(width)];
 //            width += self.itemSpace;
 //            rect = CGRectMake(itemsTotalWidth, 0, width, JPSlider_Height);
-            rect = CGRectMake(itemsTotalWidth, 0, width + self.itemSpace, JPSlider_Height);
+            rect = CGRectMake(itemsTotalWidth, 0, width + self.itemSpace, JPSlideBarHeight);
             itemsTotalWidth += self.itemSpace + width;
             [self.labelCenterXArray addObject:@(itemsTotalWidth - (width + self.itemSpace)/2.0)];
         }
@@ -188,7 +176,7 @@
             self.currentCenterX = itemsTotalWidth - (width + self.itemSpace)/2.0;
             label.textColor = self.selectedColor;
             if (self.slideBarStyle == JPSlideBarStyleTransformationAndGradientColor) {
-                label.transform = CGAffineTransformMakeScale(maxSizeValur, maxSizeValur);
+                label.transform = CGAffineTransformMakeScale(JPSlideBarMaxScaleValur, JPSlideBarMaxScaleValur);
             }
         }else{
             // 计算相邻Label的width和center.x的偏差
@@ -208,13 +196,13 @@
     
     
     if (self.titleArray.count <= 5) {
-        self.scrollView.contentSize = CGSizeMake(JPScreen_Width, JPSlider_Height);
+        self.scrollView.contentSize = CGSizeMake(JPScreen_Width, JPSlideBarHeight);
     }else {
-        self.scrollView.contentSize = CGSizeMake(itemsTotalWidth, JPSlider_Height);
+        self.scrollView.contentSize = CGSizeMake(itemsTotalWidth, JPSlideBarHeight);
     }
 }
 
-- (void)displaySliderLine{
+- (void)initializeDisplaySliderLine{
     if (self.titleArray.count > 5) {
         self.sliderLine = [[UIView alloc]initWithFrame:CGRectMake(self.itemSpace/2.0, CGRectGetHeight(self.scrollView.bounds)-2, [[self.sliderWidthArray firstObject]floatValue], 2)];
     }else{
@@ -222,7 +210,6 @@
     }
     self.sliderLine.backgroundColor = self.selectedColor;
     [self.scrollView addSubview:self.sliderLine];
-    
 }
 
 - (UILabel *)initializeLabelItemWithFrame:(CGRect)frame atIndex:(NSInteger)index{
@@ -240,20 +227,6 @@
     return label;
 }
 
-#if 0
-- (void)addMaskLayer{   // 头尾添加模糊遮罩，留着以后用
-    CAGradientLayer * layer = [CAGradientLayer layer];
-    layer.bounds = self.scrollView.bounds;
-    layer.anchorPoint = CGPointMake(0.5, 0.5);
-    layer.position = self.scrollView.center;
-    layer.startPoint = CGPointMake(1, 0);
-    
-    layer.endPoint = CGPointMake(0, 0);
-    layer.colors = @[(__bridge id)[UIColor darkGrayColor].CGColor,(__bridge id)[[UIColor darkGrayColor]colorWithAlphaComponent:0.3].CGColor,(__bridge id)[UIColor clearColor].CGColor];
-    layer.locations = @[@(0.9),@(0.95),@(1.0)];
-    self.contentView.layer.mask = layer;
-}
-#endif
 
 #pragma mark - publicMethod
 - (void)setSlideBarBackgroudColorIfNecessary:(UIColor *)color{
@@ -271,10 +244,14 @@
     return self.labelArray[self.selectedIndex];
 }
 
-- (void)setBottomLineBackgroundColorIfNecessary:(UIColor *)color{
-    if (self.bottomLineLayer) {
-        self.bottomLineLayer.backgroundColor = color.CGColor;
-    }
+
+- (void)addBottomLineIfNecessaryLineBackgroundColor:(UIColor *)color{
+    CALayer * layer = [CALayer layer];
+    layer.bounds = CGRectMake(0, 0, JPScreen_Width, 0.5);
+    layer.position = CGPointMake(0, JPSlideBarHeight);
+    layer.anchorPoint = CGPointMake(0, 1);
+    layer.backgroundColor = color.CGColor;
+    [self.contentView.layer addSublayer:layer];
 }
 
 
@@ -305,8 +282,7 @@
         self.isScrollDirectionLeft = YES;
     }
     
-    CGFloat index = scrollView.contentOffset.x/self.screenWidth;
-    JKLog(@"%f",roundf(index));
+    CGFloat index = scrollView.contentOffset.x/JPScreen_Width;
     if(roundf(index) == 1 && self.isScrollDirectionLeft){
         [self movesliderLineToDestinationIndex:roundf(index)];
     }else if (roundf(index) == self.titleArray.count-2 && self.isScrollDirectionLeft == NO){
@@ -325,8 +301,8 @@
     self.observedScrollViewOffsetX = scrollView.contentOffset.x;
     
     if (!self.didEndDecelerating) {
-        CGFloat index = scrollView.contentOffset.x/self.screenWidth;
-        [self scrollViewObservedDidChangePageWithOffsetX:roundf(index)*self.screenWidth];
+        CGFloat index = scrollView.contentOffset.x/JPScreen_Width;
+        [self scrollViewObservedDidChangePageWithOffsetX:roundf(index)*JPScreen_Width];
     }
 }
 
@@ -334,12 +310,12 @@
 
 - (void)scrollViewObservedDidChangePageWithOffsetX:(CGFloat)offsetX{
     self.currentCenterX = [self.labelCenterXArray[self.selectedIndex] floatValue];
-    self.currentIndex   = (NSInteger)(offsetX / self.screenWidth);
+    self.currentIndex   = (NSInteger)(offsetX / JPScreen_Width);
     [self resetSlideBarContentOffsetWithIndex:self.currentIndex];
     
     // 翻页的通知（外部可以接收）
     if (self.currentOffsetX != offsetX) {
-        [[NSNotificationCenter defaultCenter]postNotificationName:JPScrollViewDidChangePageNotification object:nil userInfo:@{JPScrollViewContentOffsetX:@(offsetX),JPSlideBarCurrentIndex:@(self.currentIndex)}];
+        [[NSNotificationCenter defaultCenter]postNotificationName:JPSlideBarChangePageNotification object:nil userInfo:@{JPSlideBarScrollViewContentOffsetX:@(offsetX),JPSlideBarCurrentIndex:@(self.currentIndex)}];
     }
     self.currentOffsetX = offsetX;
 }
@@ -354,16 +330,9 @@
 
 
 
-/** 滑动页面的时候更新整个SliderBar，模拟器上略有卡顿，待优化。
- *
- *  宽度、centerX、宽度差、centerX差值 存放在数组中，避免一直计算
- *
- *  多线程处理有点复杂，暂时未被采用
- */
-
 - (void)updateSlideBarWhenScrollViewDidScrollWithOffsetX:(CGFloat)offsetX{
     @autoreleasepool {
-        if (offsetX == self.offestXKVO || offsetX < 0 || offsetX > self.screenWidth * (self.titleArray.count -1)) {
+        if (offsetX == self.offestXKVO || offsetX < 0 || offsetX > JPScreen_Width * (self.titleArray.count -1)) {
             return;  // scrollView.bounces = YES时生效，或者为NO时到边上了还一直侧滑时生效,
         }
         
@@ -374,7 +343,7 @@
             self.observedScrollView.delegate = self;
         }
         
-        NSInteger destinationIndex = (NSInteger)((self.screenWidth/2.0 + offsetX)/self.screenWidth);
+        NSInteger destinationIndex = (NSInteger)((JPScreen_Width/2.0 + offsetX)/JPScreen_Width);
         [self didSelectedSlideBarItemAtIndex:destinationIndex isLabelClicked:NO];
         
         if (self.slideBarStyle == JPSlideBarStyleChangeColorOnly) {
@@ -383,7 +352,7 @@
         
         CGFloat centerSpace = 0;
         CGFloat widthSpace = 0;
-        CGFloat scale = (offsetX - self.currentOffsetX)/self.screenWidth;
+        CGFloat scale = (offsetX - self.currentOffsetX)/JPScreen_Width;
         if (scale == self.scale) {
             return;   // 点击选中产生的非动态偏移时生效，scrollView.bounces = NO
         }
@@ -446,7 +415,7 @@
     [self didSelectedSlideBarItemAtIndex:index isLabelClicked:YES];
     [self movesliderLineToDestinationIndex:index];
     
-    self.currentOffsetX = index * self.screenWidth;
+    self.currentOffsetX = index * JPScreen_Width;
     self.currentIndex   = index;
     self.currentCenterX = [self.labelCenterXArray[index] floatValue];
     
@@ -464,7 +433,7 @@
             
             if (self.slideBarStyle == JPSlideBarStyleTransformationAndGradientColor) {
                 [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-                    label.transform = CGAffineTransformMakeScale(maxSizeValur, maxSizeValur);
+                    label.transform = CGAffineTransformMakeScale(JPSlideBarMaxScaleValur, JPSlideBarMaxScaleValur);
                     self.selectedLabel.transform = CGAffineTransformIdentity;
                 } completion:nil];
             }
@@ -507,19 +476,15 @@
     }
 }
 
-//  大小渐变,最大1.5,统一修改
-CGFloat sizeDValur = 0.3;
-CGFloat maxSizeValur = 1.3;
-
 - (void)displayGradientSizeWithLeftIndex:(NSInteger)leftIndex andRightIndex:(NSInteger)rightIndex scale:(CGFloat)scale{
     UILabel * leftLabel = self.labelArray[leftIndex];
     UILabel * rightLabel = self.labelArray[rightIndex];
     if (scale > 0) {
-        rightLabel.transform = CGAffineTransformMakeScale(1+ scale * sizeDValur, 1+ scale * sizeDValur);
-        leftLabel.transform = CGAffineTransformMakeScale(maxSizeValur- scale * sizeDValur, maxSizeValur- scale * sizeDValur);
+        rightLabel.transform = CGAffineTransformMakeScale(1+ scale * JPSlideBarScaleDValue, 1+ scale * JPSlideBarScaleDValue);
+        leftLabel.transform = CGAffineTransformMakeScale(JPSlideBarMaxScaleValur- scale * JPSlideBarScaleDValue, JPSlideBarMaxScaleValur- scale * JPSlideBarScaleDValue);
     }else if (scale < 0){
-        rightLabel.transform = CGAffineTransformMakeScale(maxSizeValur+ scale * sizeDValur, maxSizeValur+ scale * sizeDValur);
-        leftLabel.transform = CGAffineTransformMakeScale(1- scale * sizeDValur, 1- scale * sizeDValur);
+        rightLabel.transform = CGAffineTransformMakeScale(JPSlideBarMaxScaleValur+ scale * JPSlideBarScaleDValue, JPSlideBarMaxScaleValur+ scale * JPSlideBarScaleDValue);
+        leftLabel.transform = CGAffineTransformMakeScale(1- scale * JPSlideBarScaleDValue, 1- scale * JPSlideBarScaleDValue);
     }
 }
 
@@ -527,13 +492,12 @@ CGFloat maxSizeValur = 1.3;
 //  滚动条偏移，尽量将选择的Label居中显示
 - (void)resetSlideBarContentOffsetWithIndex:(NSInteger)index{
     
-    CGFloat offsetX = [self.labelCenterXArray[index] floatValue] - self.screenWidth / 2.0;
+    CGFloat offsetX = [self.labelCenterXArray[index] floatValue] - JPScreen_Width / 2.0;
     if (offsetX >= 0) {
-        
-        if (offsetX + self.screenWidth < self.scrollView.contentSize.width) {
-            [self.scrollView setContentOffset:CGPointMake([self.labelCenterXArray[index] floatValue] - self.screenWidth / 2.0, 0) animated:YES];
+        if (offsetX + JPScreen_Width < self.scrollView.contentSize.width) {
+            [self.scrollView setContentOffset:CGPointMake([self.labelCenterXArray[index] floatValue] - JPScreen_Width / 2.0, 0) animated:YES];
         }else{
-            [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentSize.width-self.screenWidth,0) animated:YES];
+            [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentSize.width-JPScreen_Width,0) animated:YES];
         }
     }else {
         [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
@@ -550,7 +514,8 @@ CGFloat maxSizeValur = 1.3;
         
         [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             self.sliderLine.frame = rect;
-        } completion:nil];    }
+        } completion:nil];
+    }
 }
 
 #pragma mark - ToolMethod
@@ -558,19 +523,12 @@ CGFloat maxSizeValur = 1.3;
 //  计算字符串宽度
 - (CGFloat)widthOfString:(NSString *)string{
     NSDictionary *attributes = @{NSFontAttributeName : self.font};
-    CGSize maxSize = CGSizeMake(MAXFLOAT, JPSlider_Height);
-    CGSize size = [string boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+    CGSize maxSize = CGSizeMake(MAXFLOAT, JPSlideBarHeight);
+    CGSize size = [string boundingRectWithSize:maxSize
+                                       options:NSStringDrawingUsesLineFragmentOrigin
+                                    attributes:attributes
+                                       context:nil].size;
     return ceil(size.width);
-}
-
-- (void)addBottomLine{
-    CALayer * layer = [CALayer layer];
-    layer.bounds = CGRectMake(0, 0, JPScreen_Width, 0.7);
-    layer.position = CGPointMake(0, JPSlider_Height);
-    layer.anchorPoint = CGPointMake(0, 1);
-    layer.backgroundColor = [self.selectedColor colorWithAlphaComponent:0.6].CGColor;
-    self.bottomLineLayer = layer;
-    [self.contentView.layer addSublayer:layer];
 }
 
 
@@ -578,7 +536,7 @@ CGFloat maxSizeValur = 1.3;
 
 - (UIScrollView *)scrollView{
     if (!_scrollView) {
-        _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, JPScreen_Width, JPSlider_Height)];
+        _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, JPScreen_Width, JPSlideBarHeight)];
         _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.showsVerticalScrollIndicator  = NO;
         _scrollView.bounces  = YES;
@@ -646,6 +604,23 @@ CGFloat maxSizeValur = 1.3;
     [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     JKLog(@"%@被释放",[self class]);
 }
+
+
+
+#if 0
+- (void)addMaskLayer{   // 头尾添加模糊遮罩，留着以后用
+    CAGradientLayer * layer = [CAGradientLayer layer];
+    layer.bounds = self.scrollView.bounds;
+    layer.anchorPoint = CGPointMake(0.5, 0.5);
+    layer.position = self.scrollView.center;
+    layer.startPoint = CGPointMake(1, 0);
+    
+    layer.endPoint = CGPointMake(0, 0);
+    layer.colors = @[(__bridge id)[UIColor darkGrayColor].CGColor,(__bridge id)[[UIColor darkGrayColor]colorWithAlphaComponent:0.3].CGColor,(__bridge id)[UIColor clearColor].CGColor];
+    layer.locations = @[@(0.9),@(0.95),@(1.0)];
+    self.contentView.layer.mask = layer;
+}
+#endif
 
 
 @end

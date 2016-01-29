@@ -8,6 +8,7 @@
 
 #import "CollectViewTestVC.h"
 #import "JPBaseTableViewController.h"
+
 #import "JPSlideBar.h"
 
 @interface CollectViewTestVC ()
@@ -59,17 +60,17 @@ static NSString * const MYKEY = @"UICollectionViewCell";
 }
 
 - (void)addJPSlideBar{
+    self.slideBar = [JPSlideNavigationBar slideBarWithObservableScrollView:self.collectionView
+                                                            viewController:self
+                                                              frameOriginY:64
+                                                       slideBarSliderStyle:JPSlideBarStyleTransformationAndGradientColor];
     
-    self.slideBar = [JPSlideNavigationBar showInViewController:self
-                                observableScrollView:self.collectionView
-                                        frameOriginY:64
-                                           itemSpace:30
-                                 slideBarSliderStyle:JPSlideBarStyleShowSliderAndGradientColor];
-    
+    [self.view addSubview:self.slideBar];
     
     Weak(self);
     [self.slideBar configureSlideBarWithTitles:self.titleArray
                                      titleFont:[UIFont systemFontOfSize:18]
+                                     itemSpace:30
                            normalTitleRGBColor:JColor_RGB(153,153,153)
                          selectedTitleRGBColor:JColor_RGB(26,34,255)
                                  selectedBlock:^(NSInteger index) {
@@ -85,11 +86,11 @@ static NSString * const MYKEY = @"UICollectionViewCell";
     
     
     // 可以监听每次翻页的通知,内部已经计算好。(比如刷新数据)
-    [JPNotificationCenter addObserver:self selector:@selector(doSomeThingWhenScrollViewChangePage:) name:JPScrollViewDidChangePageNotification object:nil];
+    [JPNotificationCenter addObserver:self selector:@selector(doSomeThingWhenScrollViewChangePage:) name:JPSlideBarChangePageNotification object:nil];
 }
 
 - (void)doSomeThingWhenScrollViewChangePage:(NSNotification *)notification{
-    CGFloat offsetX = [notification.userInfo[JPScrollViewContentOffsetX] floatValue];
+    CGFloat offsetX = [notification.userInfo[JPSlideBarScrollViewContentOffsetX] floatValue];
     NSInteger index = [notification.userInfo[JPSlideBarCurrentIndex] integerValue];
     
     JKLog(@"offsetX:%f    index:%ld",offsetX,index);

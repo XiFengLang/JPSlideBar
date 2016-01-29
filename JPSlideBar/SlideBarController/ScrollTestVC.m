@@ -36,16 +36,18 @@
             break;
         }
     }
-
-    self.slideBar = [JPSlideNavigationBar showInViewController:self
-                                observableScrollView:self.scrollView
-                                        frameOriginY:64
-                                           itemSpace:30
-                                 slideBarSliderStyle:JPSlideBarStyleTransformationAndGradientColor];
+    
+    self.slideBar = [JPSlideNavigationBar slideBarWithObservableScrollView:self.scrollView
+                                                            viewController:self
+                                                              frameOriginY:64
+                                                       slideBarSliderStyle:JPSlideBarStyleTransformationAndGradientColor];
+    
+    [self.view addSubview:self.slideBar];
     
     Weak(self); //避免循环引用
     [self.slideBar configureSlideBarWithTitles:titles
                                      titleFont:[UIFont systemFontOfSize:18]
+                                     itemSpace:30
                            normalTitleRGBColor:JColor_RGB(0,0,0)
                          selectedTitleRGBColor:JColor_RGB(255,255,255)
                                  selectedBlock:^(NSInteger index) {
@@ -54,12 +56,12 @@
                                      [self.scrollView setContentOffset:CGPointMake(scrollX, 0)];
                                  }];
     
-    // 可以监听每次翻页的通知,内部已经计算好。(比如刷新数据)
-    [JPNotificationCenter addObserver:self selector:@selector(doSomeThingWhenScrollViewChangePage:) name:JPScrollViewDidChangePageNotification object:nil];
+    // 可以监听每次翻页的通知。(比如刷新数据)
+    [JPNotificationCenter addObserver:self selector:@selector(doSomeThingWhenScrollViewChangePage:) name:JPSlideBarChangePageNotification object:nil];
 }
 
 - (void)doSomeThingWhenScrollViewChangePage:(NSNotification *)notification{
-    CGFloat offsetX = [notification.userInfo[JPScrollViewContentOffsetX] floatValue];
+    CGFloat offsetX = [notification.userInfo[JPSlideBarScrollViewContentOffsetX] floatValue];
     NSInteger index = [notification.userInfo[JPSlideBarCurrentIndex] integerValue];
     
     JKLog(@"offsetX:%f    index:%ld",offsetX,index);

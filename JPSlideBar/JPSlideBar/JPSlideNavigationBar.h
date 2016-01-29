@@ -10,13 +10,8 @@
 
 #import <UIKit/UIKit.h>
 
-
-
 typedef void(^JPSlideBarSelectedBlock) (NSInteger index);
 
-/**
- *  是否隐藏滑动条
- */
 typedef NS_ENUM(NSInteger, JPSlideBarStyle) {
     /**
      *  仅改变字体颜色,隐藏滚动条
@@ -42,28 +37,22 @@ typedef NS_ENUM(NSInteger, JPSlideBarStyle) {
 
 
 
+
 @interface JPSlideNavigationBar : UIVisualEffectView <UIScrollViewDelegate>
 // 内部转换被监听scrollView的delegate，相当于self.delegate = scrollView.delegate ,scrollView.delegate = self
 @property (nonatomic, weak, readonly) id<UIScrollViewDelegate> delegate;
 
 
-
-
-
 /**
  *  初始化及显示JPSlideBar容器视图，titleArray.count <= 5时等宽处理，大于5个才支持形变。默认使用磨砂效果，设置背景颜色即可覆盖
- *
- *  @param viewController            内部实现[viewController.view addSubview:slideBar];
  *  @param frameOriginY              Y坐标
- *  @param space                     Item间隔，默认最小20
  *  @param slideBarStyle             JPSlideBar样式
  *
  */
-+ (instancetype)showInViewController:(UIViewController *)viewController
-                observableScrollView:(UIScrollView *)scrollView
-                        frameOriginY:(CGFloat)frameOriginY
-                           itemSpace:(CGFloat)space
-                 slideBarSliderStyle:(JPSlideBarStyle)slideBarStyle;
++ (instancetype)slideBarWithObservableScrollView:(UIScrollView *)scrollView
+                                  viewController:(UIViewController *)viewController
+                                    frameOriginY:(CGFloat)frameOriginY
+                             slideBarSliderStyle:(JPSlideBarStyle)slideBarStyle;
 
 
 /**
@@ -71,12 +60,14 @@ typedef NS_ENUM(NSInteger, JPSlideBarStyle) {
  *
  *  @param titleArray    title数组，count<=5时会做等宽处理，铺满屏幕
  *  @param font          正常状态下的字体（不再支持更改字体）
+ *  @param space         Item间隔，默认最小20
  *  @param normalColor   正常状态下的颜色
  *  @param selectedColor 选中后的字体、滑动条颜色
  *  @param selectedBlock 选择后的回调Block
  */
 - (void)configureSlideBarWithTitles:(NSArray *)titleArray
-                          titleFont:(UIFont  *)font
+                          titleFont:(UIFont *)font
+                          itemSpace:(CGFloat)space
                 normalTitleRGBColor:(UIColor *)normalColor
               selectedTitleRGBColor:(UIColor *)selectedColor
                       selectedBlock:(JPSlideBarSelectedBlock)selectedBlock;
@@ -88,9 +79,9 @@ typedef NS_ENUM(NSInteger, JPSlideBarStyle) {
 - (void)setSlideBarBackgroudColorIfNecessary:(UIColor *)color;
 
 /**
- *  设置底部线条的颜色
+ *  设置底部线条及颜色
  */
-- (void)setBottomLineBackgroundColorIfNecessary:(UIColor *)color;
+- (void)addBottomLineIfNecessaryLineBackgroundColor:(UIColor *)color;
 
 
 - (NSInteger)indexOfSlideBarItemDidSelected;
