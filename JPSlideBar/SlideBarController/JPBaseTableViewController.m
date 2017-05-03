@@ -26,6 +26,7 @@ static NSString * identifier = @"JPTableViewCell";
     
     self.tableView.tableFooterView = [UIView new];
     self.tableView.contentInset = UIEdgeInsetsMake(42, 0, 0, 0);
+    NSLog(@"%@",NSStringFromSelector(_cmd));
 }
 
 

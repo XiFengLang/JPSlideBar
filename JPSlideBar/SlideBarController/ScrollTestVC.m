@@ -92,10 +92,12 @@
         
         JPBaseTableViewController * subVC = [[JPBaseTableViewController alloc]init];
         subVC.dataSourceArray = [titles mutableCopy];
-        subVC.view.frame = CGRectMake(self.scrollView.bounds.size.width * index, 0, self.scrollView.bounds.size.width, self.scrollView.bounds.size.height);
         
         [self addChildViewController:subVC];
         [self.scrollView addSubview:subVC.view];
+        
+        /// 如果在addChildViewController前面设置subVC.view.frame，会提前走viewDidLoad，可能会影响传值，所以放在最后面
+        subVC.view.frame = CGRectMake(self.scrollView.bounds.size.width * index, 0, self.scrollView.bounds.size.width, self.scrollView.bounds.size.height);
     }
 }
 
